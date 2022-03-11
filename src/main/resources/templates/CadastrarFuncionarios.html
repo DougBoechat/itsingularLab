@@ -39,6 +39,7 @@
 				}
 		});
 	}
+	
 </script>
 <body>
 	<div class="d-flex">
@@ -520,7 +521,14 @@
 										th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
 										class="form-control" id="conta" placeholder="Nº Conta">
 								</div>
-							</div>
+								
+								<div id="box" class='d-flex justify-content-between col-md-12'> </div>
+
+                				<div style="margin-top: 15px; margin-left: 15px;">
+
+                    				<button type="button" class="btn btn-success" id="add">Adicionar</button>
+								</div>
+							</div> 
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -665,5 +673,92 @@
 		</div>
 	</div>
 
+	<script>
+	
+	// Função do botão de adicionar novos campos para Dados Bancários
+	contador = 1;
+
+    var btn_add = document.getElementById('add');
+    var box = document.getElementById('box');
+
+    btn_add.addEventListener('click', function(){
+        
+        contador++;
+        CreateTipoConta()
+        createBanco();
+        createAgencia();
+        createNumeroConta();
+        
+    });
+
+    function CreateTipoConta() {
+
+        var tipoConta = document.createElement('label');
+        tipoConta.setAttribute('for', 'tipoConta' + contador);
+        tipoConta.setAttribute('class', 'col-form-label labels');
+        tipoConta.textContent = 'Tipo da Conta';
+        
+        var inputTipoConta = document.createElement('select');
+        inputTipoConta.setAttribute('class', 'form-control');
+        inputTipoConta.setAttribute('id', 'tipoConta' + contador);
+        
+        box.appendChild(tipoConta);
+        box.appendChild(inputTipoConta);
+            
+	}
+				 
+
+    function createBanco() {
+
+        var banco = document.createElement('label');
+        banco.setAttribute('for', 'banco' + contador);
+        banco.setAttribute('class', 'col-form-label labels');
+        banco.textContent = 'Banco';
+
+        var inputBanco = document.createElement('select');
+        inputBanco.setAttribute('class', 'form-control');
+        inputBanco.setAttribute('id', 'banco' + contador);
+
+        box.appendChild(banco);
+        box.appendChild(inputBanco);
+
+    } 
+
+    function createAgencia() {
+
+        var agencia = document.createElement('label');
+        agencia.setAttribute('for', 'agencia' + contador);
+        agencia.setAttribute('class', 'col-form-label labels');
+        agencia.textContent = 'Agência';
+
+        var inputAgencia = document.createElement('input');
+        inputAgencia.setAttribute('class', 'form-control');
+        inputAgencia.setAttribute('id', 'agencia' + contador);
+        inputAgencia.setAttribute('type', 'text');
+        inputAgencia.setAttribute('placeholder', 'Agência Bancária');
+
+        box.appendChild(agencia);
+        box.appendChild(inputAgencia);
+    }
+    
+    function createNumeroConta() {
+
+        var conta = document.createElement('label');
+        conta.setAttribute('for', 'conta' + contador);
+        conta.setAttribute('class', 'col-form-label labels');
+        conta.textContent = 'Nº Conta';
+
+         var inputConta = document.createElement('input');
+         inputConta.setAttribute('class', 'form-control');
+         inputConta.setAttribute('id', 'conta' + contador);
+         inputConta.setAttribute('type', 'text');
+         inputConta.setAttribute('placeholder', 'Nº Conta')
+
+        box.appendChild(conta);
+        box.appendChild(inputConta);
+    }  
+
+	</script>
+	
 </body>
 </html>
