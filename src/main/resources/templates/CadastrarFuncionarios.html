@@ -203,7 +203,7 @@
 								</div>
 								
 								<div class="form-group col-md-4">
-									<label for="emailSingular" class="col-form-label labels">E-mail ItSingular</label>
+									<label for="emailSingular" class="col-form-label labels">E-mail ITSingular</label>
 									<input type="text" class="form-control"
 										id="emailSingular" data-inputmask="'alias': 'email'"> <span
 										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
@@ -254,7 +254,7 @@
 										th:errors="*{clienteParceiros}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="gestores" class="col-form-label labels">Gestor</label>
+									<label for="gestores" class="col-form-label labels">Comercial</label>
 									<select class="form-control" th:field="*{gestores}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
@@ -509,24 +509,24 @@
 											th:value="${banco}" th:text="${banco}"></option>
 									</select>
 								</div>
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-3">
 									<label for="agencia" class="col-form-label labels">Agência</label>
 									<input type="text" th:field="*{agencia}"
 										data-inputmask="'mask': '9{1,4}-9{1}'" class="form-control"
 										id="agencia" placeholder="Agência Bancária">
 								</div>
-								<div class="form-group col-md-4">
+								<div class="form-group col-md-3">
 									<label for="conta" class="col-form-label"
 										style="margin-left: 1px">Nº Conta</label> <input type="text"
 										th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
 										class="form-control" id="conta" placeholder="Nº Conta">
 								</div>
 								
-								<div id="box" class='d-flex justify-content-between col-md-12'> </div>
+								<div id="box" class='d-flex flex-wrap justify-content-between col-md-12'> </div>
 
                 				<div style="margin-top: 15px; margin-left: 15px;">
 
-                    				<button type="button" class="btn btn-success" id="add">Adicionar</button>
+                    				<button type="button" class="btn btn-success" id="add">Novos Dados Bancários</button>
 								</div>
 							</div> 
 						</div>
@@ -693,6 +693,10 @@
 
     function CreateTipoConta() {
 
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
+         div.setAttribute('style', 'padding-left: 0px' );     
+        
         var tipoConta = document.createElement('label');
         tipoConta.setAttribute('for', 'tipoConta' + contador);
         tipoConta.setAttribute('class', 'col-form-label labels');
@@ -702,13 +706,18 @@
         inputTipoConta.setAttribute('class', 'form-control');
         inputTipoConta.setAttribute('id', 'tipoConta' + contador);
         
-        box.appendChild(tipoConta);
-        box.appendChild(inputTipoConta);
+         div.appendChild(tipoConta);
+		div.appendChild(inputTipoConta);
+        
+        box.appendChild(div);
             
 	}
 				 
 
     function createBanco() {
+	
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
 
         var banco = document.createElement('label');
         banco.setAttribute('for', 'banco' + contador);
@@ -718,14 +727,19 @@
         var inputBanco = document.createElement('select');
         inputBanco.setAttribute('class', 'form-control');
         inputBanco.setAttribute('id', 'banco' + contador);
+        
+        div.appendChild(banco);
+		div.appendChild(inputBanco);
 
-        box.appendChild(banco);
-        box.appendChild(inputBanco);
+        box.appendChild(div);
 
     } 
 
     function createAgencia() {
 
+        var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
+        
         var agencia = document.createElement('label');
         agencia.setAttribute('for', 'agencia' + contador);
         agencia.setAttribute('class', 'col-form-label labels');
@@ -737,25 +751,33 @@
         inputAgencia.setAttribute('type', 'text');
         inputAgencia.setAttribute('placeholder', 'Agência Bancária');
 
-        box.appendChild(agencia);
-        box.appendChild(inputAgencia);
+		div.appendChild(agencia);
+		div.appendChild(inputAgencia);
+
+        box.appendChild(div);
     }
     
     function createNumeroConta() {
+	
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3 margin-bottom 15px');
+        div.setAttribute('style', 'padding-right: 0px'); 
 
         var conta = document.createElement('label');
-        conta.setAttribute('for', 'conta' + contador);
+        conta.setAttribute('for', 'numeroConta' + contador);
         conta.setAttribute('class', 'col-form-label labels');
         conta.textContent = 'Nº Conta';
 
          var inputConta = document.createElement('input');
          inputConta.setAttribute('class', 'form-control');
-         inputConta.setAttribute('id', 'conta' + contador);
+         inputConta.setAttribute('id', 'numeroConta' + contador);
          inputConta.setAttribute('type', 'text');
-         inputConta.setAttribute('placeholder', 'Nº Conta')
+         inputConta.setAttribute('placeholder', 'Nº Conta');
+         
+         div.appendChild(conta);
+		 div.appendChild(inputConta);
 
-        box.appendChild(conta);
-        box.appendChild(inputConta);
+        box.appendChild(div);
     }  
 
 	</script>
