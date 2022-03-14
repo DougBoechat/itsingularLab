@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Gestores {
 
-	GUILHERME, LUCAS, HARLEI, NADIA, PAULO, DIEGO, RODOLFO;
+	CLEMILTON, LILIAN, HARLEI, RODOLFO, GUILHERME;
 
 	private String gestor;
 }

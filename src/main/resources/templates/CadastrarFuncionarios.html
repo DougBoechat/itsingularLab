@@ -288,11 +288,11 @@
 									<label for="tecnologiaPrincipal" class="col-form-label labels">Tecnologia Principal</label>
 									<select class="form-control fields"                 >
 										<option th:value="''" th:text="SELECIONE"></option>
-										<!-- <option
-											th:each="tipoCargo : ${T(com.br.itsingular.enums.TipoCargo).values()}"
-											th:value="${tipoCargo}" th:text="${tipoCargo}"></option> -->
-									</select> <span th:if="${#fields.hasErrors('cargo')}"
-										th:errors="*{cargo}" class="text-danger"></span> 
+										<option
+											th:each="tecnologiaPrincipal : ${T(com.br.itsingular.enums.TecnologiaPrincipal).values()}"
+											th:value="${tecnologiaPrincipal}" th:text="${tecnologiaPrincipal}"></option>
+									 	</select> <span th:if="${#fields.hasErrors('cargo')}"
+											th:errors="*{cargo}" class="text-danger"></span>
 								</div>
 								
 								<div class="form-group col-md-3">
