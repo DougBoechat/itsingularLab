@@ -39,6 +39,7 @@
 				}
 		});
 	}
+	
 </script>
 <body>
 	<div class="d-flex">
@@ -114,7 +115,7 @@
 								<div class="form-group col-md-6">
 									<input type="hidden" th:field="*{id}" class="form-control"
 										id="id_funcionario" /> <label for="nome"
-										class="col-form-label labels">Nome</label> <input type="text"
+										class="col-form-label labels">Nome Completo</label> <input type="text"
 										th:field="*{nome}" class="form-control" id="nome"
 										placeholder="Nome do Funcionário"> <span
 										th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"
@@ -152,26 +153,6 @@
 									<span th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}"
 										class="text-danger"></span>
 								</div>
-								<div class="form-group col-md-2">
-									<label for="naturalidade" class="col-form-label labels">Naturalidade</label>
-									<select class="form-control fields" th:field="*{naturalidade}">
-										<option th:value="''" th:text="SELECIONE"></option>
-										<option
-											th:each="estado : ${T(com.br.itsingular.enums.TipoEstado).values()}"
-											th:value="${estado}" th:text="${estado}"></option>
-									</select> <span th:if="${#fields.hasErrors('naturalidade')}"
-										th:errors="*{naturalidade}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="grauInstrucao" class="col-form-label labels">Escolaridade</label>
-									<select class="form-control fields" th:field="*{grauInstrucao}">
-										<option th:value="''" th:text="SELECIONE"></option>
-										<option
-											th:each="grauInstrucao : ${T(com.br.itsingular.enums.TipoGrauInstrucao).values()}"
-											th:value="${grauInstrucao}" th:text="${grauInstrucao}"></option>
-									</select> <span th:if="${#fields.hasErrors('grauInstrucao')}"
-										th:errors="*{grauInstrucao}" class="text-danger"></span>
-								</div>
 
 								<div class="form-group col-md-3">
 									<label for="genero" class="col-form-label labels">Gênero</label>
@@ -184,36 +165,6 @@
 										th:errors="*{genero}" class="text-danger"></span>
 								</div>
 
-								<div class="form-group col-md-3">
-									<label for="cor" class="col-form-label labels">Cor</label> <select
-										class="form-control fields" th:field="*{cor}">
-										<option th:value="''" th:text="SELECIONE"></option>
-										<option
-											th:each="tipoCor : ${T(com.br.itsingular.enums.TipoCor).values()}"
-											th:value="${tipoCor}" th:text="${tipoCor}"></option>
-									</select> <span th:if="${#fields.hasErrors('cor')}" th:errors="*{cor}"
-										class="text-danger"></span>
-								</div>
-
-								<div class="form-group col-md-3">
-									<label for="estadoCivil" class="col-form-label labels">Estado
-										Civil</label> <select class="form-control fields"
-										th:field="*{estadoCivil}">
-										<option th:value="''" th:text="SELECIONE"></option>
-										<option
-											th:each="estadoCivil : ${T(com.br.itsingular.enums.TipoEstadoCivil).values()}"
-											th:value="${estadoCivil}" th:text="${estadoCivil}"></option>
-									</select> <span th:if="${#fields.hasErrors('estadoCivil')}"
-										th:errors="*{estadoCivil}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="quantidadeFilhos" class="col-form-label labels">Qtde
-										Filhos</label> <input type="number" th:field="*{quantidadeFilhos}"
-										class="form-control" id="quantidadeFilhos"
-										placeholder="Qtde de Filhos"> <span
-										th:if="${#fields.hasErrors('quantidadeFilhos')}"
-										th:errors="*{quantidadeFilhos}" class="text-danger"></span>
-								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
@@ -239,14 +190,22 @@
 								<div class="form-group col-md-4">
 									<label for="numeroTelefone" class="col-form-label labels">Telefone
 										Opcional</label> <input type="text" th:field="*{numeroTelefone}"
-										class="form-control" id="numeroTelefone" maxlength="14"
+										class="form-control" id="numeroTelefone" maxlength="11"
 										data-inputmask="'mask': '(99)9999-9999'"
 										placeholder="Telefone Residêncial">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="email" class="col-form-label labels">E-mail</label>
+									<label for="email" class="col-form-label labels">E-mail Pessoal</label>
 									<input type="text" th:field="*{email}" class="form-control"
 										id="email" data-inputmask="'alias': 'email'"> <span
+										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+										class="text-danger"></span>
+								</div>
+								
+								<div class="form-group col-md-4">
+									<label for="emailSingular" class="col-form-label labels">E-mail ITSingular</label>
+									<input type="text" class="form-control"
+										id="emailSingular" data-inputmask="'alias': 'email'"> <span
 										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 										class="text-danger"></span>
 								</div>
@@ -295,7 +254,7 @@
 										th:errors="*{clienteParceiros}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="gestores" class="col-form-label labels">Gestor</label>
+									<label for="gestores" class="col-form-label labels">Comercial</label>
 									<select class="form-control" th:field="*{gestores}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
@@ -324,8 +283,30 @@
 									</select> <span th:if="${#fields.hasErrors('cargo')}"
 										th:errors="*{cargo}" class="text-danger"></span>
 								</div>
+								
 								<div class="form-group col-md-3">
-									<label for="remuneracao" class="col-form-label labels">Remuneração</label>
+									<label for="tecnologiaPrincipal" class="col-form-label labels">Tecnologia Principal</label>
+									<select class="form-control fields"                 >
+										<option th:value="''" th:text="SELECIONE"></option>
+										<!-- <option
+											th:each="tipoCargo : ${T(com.br.itsingular.enums.TipoCargo).values()}"
+											th:value="${tipoCargo}" th:text="${tipoCargo}"></option> -->
+									</select> <span th:if="${#fields.hasErrors('cargo')}"
+										th:errors="*{cargo}" class="text-danger"></span> 
+								</div>
+								
+								<div class="form-group col-md-3">
+									<label for="remuneracaoCLT" class="col-form-label labels">Remuneração CLT</label>
+									<input type="text" 
+										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+										class="form-control" id="remuneracaoCLT"
+										placeholder="Remuneração"><span
+										th:if="${#fields.hasErrors('remuneracao')}"
+										th:errors="*{remuneracao}" class="text-danger"></span>
+								</div>
+								
+								<div class="form-group col-md-3">
+									<label for="remuneracao" class="col-form-label labels">Remuneração PJ</label>
 									<input type="text" th:field="*{remuneracao}"
 										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
 										class="form-control" id="remuneracao"
@@ -374,17 +355,15 @@
 									</select> <span th:if="${#fields.hasErrors('statusFuncionario')}"
 										th:errors="*{statusFuncionario}" class="text-danger"></span>
 								</div>
+								
 								<div class="form-group col-md-3">
-									<label for="nivelFimContratacao" class="col-form-label labels">Nível
-										Fim Contratação</label> <select class="form-control"
-										th:field="*{nivelFimContratacao}">
-										<option th:value="''" th:text="SELECIONE"></option>
-										<option
-											th:each="tipoNivel : ${T(com.br.itsingular.enums.TipoNivel).values()}"
-											th:value="${tipoNivel}" th:text="${tipoNivel}"></option>
-									</select>
+									<label for="tempoContratacao" class="col-form-label labels">Tempo Contratação</label>
+									<input type="text" 
+										class="form-control" id="tempoContratacao">
+									<!-- <span th:if="${#fields.hasErrors('logradouro')}"
+										th:errors="*{logradouro}" class="text-danger"></span> -->
 								</div>
-
+								
 							</div>
 						</div>
 
@@ -441,7 +420,7 @@
 							<div class="panel-heading">
 								<div class="panel-heading">
 									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Endereço</h1>
+										<h1 class="panel-title" style="margin-left: -27px">Endereço Residencial</h1>
 									</div>
 								</div>
 							</div>
@@ -530,19 +509,26 @@
 											th:value="${banco}" th:text="${banco}"></option>
 									</select>
 								</div>
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-3">
 									<label for="agencia" class="col-form-label labels">Agência</label>
 									<input type="text" th:field="*{agencia}"
 										data-inputmask="'mask': '9{1,4}-9{1}'" class="form-control"
 										id="agencia" placeholder="Agência Bancária">
 								</div>
-								<div class="form-group col-md-4">
+								<div class="form-group col-md-3">
 									<label for="conta" class="col-form-label"
 										style="margin-left: 1px">Nº Conta</label> <input type="text"
 										th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
 										class="form-control" id="conta" placeholder="Nº Conta">
 								</div>
-							</div>
+								
+								<div id="box" class='d-flex flex-wrap justify-content-between col-md-12'> </div>
+
+                				<div style="margin-top: 15px; margin-left: 15px;">
+
+                    				<button type="button" class="btn btn-success" id="add">Novos Dados Bancários</button>
+								</div>
+							</div> 
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -567,7 +553,60 @@
 									<label for="nomeEmpresa" class="col-form-label labels">Nome
 										da Empresa</label> <input type="text" th:field="*{nomeEmpresa}"
 										class="form-control" id="nomeEmpresa"
-										placeholder="Nome da Empresa">
+										placeholder="Nome da Empresa">		
+								</div>
+								
+								<div class="form-group col-md-3">
+									<label for="cepComercial" class="col-form-label labels">CEP</label> <input
+										type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'"
+															 class="form-control" id="cepComercial"
+										placeholder="CEP" th:onchange="consultarCep(this);"> <span
+										th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"
+										class="text-danger"></span>
+								</div>
+								
+								<div class="form-group col-md-6">
+									<label for="logradouroComercial" class="col-form-label labels">Logradouro</label>
+									<input type="text" 
+										class="form-control" id="logradouroComercial" placeholder="Logradouro">
+									<span th:if="${#fields.hasErrors('logradouro')}"
+										th:errors="*{logradouro}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="numeroComercial" class="col-form-label labels">Número</label>
+									<input type="number"                 class="form-control"
+										id="numeroComercial" placeholder="Número"> <span
+										th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"
+										class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="complementoComercial" class="col-form-label labels">Complemento</label>
+									<input type="text" 
+										class="form-control" id="complementoComercial"
+										placeholder="Complemento"> <span
+										th:if="${#fields.hasErrors('complemento')}"
+										th:errors="*{complemento}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="bairroComercial" class="col-form-label labels">Bairro</label>
+									<input type="text"                 class="form-control"
+										id="bairroComercial" placeholder="Bairro"> <span
+										th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"
+										class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="localidadeComercial" class="col-form-label labels">Cidade</label>
+									<input type="text" 
+										class="form-control" id="localidadeComercial" placeholder="Cidade">
+									<span th:if="${#fields.hasErrors('localidade')}"
+										th:errors="*{localidade}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="estadoComercial" class="col-form-label labels">Estado</label>
+									<input type="text" 					 class="form-control"
+										id="estadoComercial" placeholder="Estado"> <span
+										th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"
+										class="text-danger"></span>
 								</div>
 
 							</div>
@@ -576,8 +615,7 @@
 							<div class="panel-heading">
 								<div class="panel-heading">
 									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Observações
-											sobre o Colaborador</h1>
+										<h1 class="panel-title" style="margin-left: -27px">Observações</h1>
 									</div>
 								</div>
 							</div>
@@ -635,5 +673,114 @@
 		</div>
 	</div>
 
+	<script>
+	
+	// Função do botão de adicionar novos campos para Dados Bancários
+	contador = 1;
+
+    var btn_add = document.getElementById('add');
+    var box = document.getElementById('box');
+
+    btn_add.addEventListener('click', function(){
+        
+        contador++;
+        CreateTipoConta()
+        createBanco();
+        createAgencia();
+        createNumeroConta();
+        
+    });
+
+    function CreateTipoConta() {
+
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
+         div.setAttribute('style', 'padding-left: 0px' );     
+        
+        var tipoConta = document.createElement('label');
+        tipoConta.setAttribute('for', 'tipoConta' + contador);
+        tipoConta.setAttribute('class', 'col-form-label labels');
+        tipoConta.textContent = 'Tipo da Conta';
+        
+        var inputTipoConta = document.createElement('select');
+        inputTipoConta.setAttribute('class', 'form-control');
+        inputTipoConta.setAttribute('id', 'tipoConta' + contador);
+        
+         div.appendChild(tipoConta);
+		div.appendChild(inputTipoConta);
+        
+        box.appendChild(div);
+            
+	}
+				 
+
+    function createBanco() {
+	
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
+
+        var banco = document.createElement('label');
+        banco.setAttribute('for', 'banco' + contador);
+        banco.setAttribute('class', 'col-form-label labels');
+        banco.textContent = 'Banco';
+
+        var inputBanco = document.createElement('select');
+        inputBanco.setAttribute('class', 'form-control');
+        inputBanco.setAttribute('id', 'banco' + contador);
+        
+        div.appendChild(banco);
+		div.appendChild(inputBanco);
+
+        box.appendChild(div);
+
+    } 
+
+    function createAgencia() {
+
+        var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3');
+        
+        var agencia = document.createElement('label');
+        agencia.setAttribute('for', 'agencia' + contador);
+        agencia.setAttribute('class', 'col-form-label labels');
+        agencia.textContent = 'Agência';
+
+        var inputAgencia = document.createElement('input');
+        inputAgencia.setAttribute('class', 'form-control');
+        inputAgencia.setAttribute('id', 'agencia' + contador);
+        inputAgencia.setAttribute('type', 'text');
+        inputAgencia.setAttribute('placeholder', 'Agência Bancária');
+
+		div.appendChild(agencia);
+		div.appendChild(inputAgencia);
+
+        box.appendChild(div);
+    }
+    
+    function createNumeroConta() {
+	
+		var div = document.createElement('div');
+        div.setAttribute('class', 'd-flex flex-wrap col-md-3 margin-bottom 15px');
+        div.setAttribute('style', 'padding-right: 0px'); 
+
+        var conta = document.createElement('label');
+        conta.setAttribute('for', 'numeroConta' + contador);
+        conta.setAttribute('class', 'col-form-label labels');
+        conta.textContent = 'Nº Conta';
+
+         var inputConta = document.createElement('input');
+         inputConta.setAttribute('class', 'form-control');
+         inputConta.setAttribute('id', 'numeroConta' + contador);
+         inputConta.setAttribute('type', 'text');
+         inputConta.setAttribute('placeholder', 'Nº Conta');
+         
+         div.appendChild(conta);
+		 div.appendChild(inputConta);
+
+        box.appendChild(div);
+    }  
+
+	</script>
+	
 </body>
 </html>
