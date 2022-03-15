@@ -192,7 +192,7 @@
 										Opcional</label> <input type="text" th:field="*{numeroTelefone}"
 										class="form-control" id="numeroTelefone" maxlength="11"
 										data-inputmask="'mask': '(99)9999-9999'"
-										placeholder="Telefone Residêncial">
+										placeholder="Telefone Residencial">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="email" class="col-form-label labels">E-mail Pessoal</label>
@@ -203,11 +203,9 @@
 								</div>
 								
 								<div class="form-group col-md-4">
-									<label for="emailSingular" class="col-form-label labels">E-mail ITSingular</label>
-									<input type="text" class="form-control"
-										id="emailSingular" data-inputmask="'alias': 'email'"> <span
-										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-										class="text-danger"></span>
+									<label for="emailCorporativo" class="col-form-label labels">E-mail ITSingular</label>
+									<input value="@itsingular.com.br" type="text" class="form-control"
+										id="emailCorporativo">
 								</div>
 							</div>
 						</div>
@@ -291,8 +289,8 @@
 										<option
 											th:each="tecnologiaPrincipal : ${T(com.br.itsingular.enums.TecnologiaPrincipal).values()}"
 											th:value="${tecnologiaPrincipal}" th:text="${tecnologiaPrincipal}"></option>
-									 	</select> <span th:if="${#fields.hasErrors('cargo')}"
-											th:errors="*{cargo}" class="text-danger"></span>
+									 	</select> <span th:if="${#fields.hasErrors('tecnologiaPrincipal')}"
+											th:errors="*{tecnologiaPrincipal}" class="text-danger"></span>
 								</div>
 								
 								<div class="form-group col-md-3">
@@ -300,19 +298,19 @@
 									<input type="text" 
 										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
 										class="form-control" id="remuneracaoCLT"
-										placeholder="Remuneração"><span
-										th:if="${#fields.hasErrors('remuneracao')}"
-										th:errors="*{remuneracao}" class="text-danger"></span>
+										placeholder="Remuneração CLT"><span
+										th:if="${#fields.hasErrors('remuneracaoCLT')}"
+										th:errors="*{remuneracaoCLT}" class="text-danger"></span>
 								</div>
 								
 								<div class="form-group col-md-3">
-									<label for="remuneracao" class="col-form-label labels">Remuneração PJ</label>
-									<input type="text" th:field="*{remuneracao}"
+									<label for="remuneracaoPJ" class="col-form-label labels">Remuneração PJ</label>
+									<input type="text" th:field="*{remuneracaoPJ}"
 										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="remuneracao"
-										placeholder="Remuneração"><span
-										th:if="${#fields.hasErrors('remuneracao')}"
-										th:errors="*{remuneracao}" class="text-danger"></span>
+										class="form-control" id="remuneracaoPJ"
+										placeholder="Remuneração PJ"><span
+										th:if="${#fields.hasErrors('remuneracaoPJ')}"
+										th:errors="*{remuneracaoPJ}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
 									<label for="dataFimContratacao" class="col-form-label"
@@ -357,11 +355,11 @@
 								</div>
 								
 								<div class="form-group col-md-3">
-									<label for="tempoContratacao" class="col-form-label labels">Tempo Contratação</label>
+									<label for="tempoContratacao" class="col-form-label labels">Tempo de Contrato</label>
 									<input type="text" 
 										class="form-control" id="tempoContratacao">
-									<!-- <span th:if="${#fields.hasErrors('logradouro')}"
-										th:errors="*{logradouro}" class="text-danger"></span> -->
+									 <span th:if="${#fields.hasErrors('tempoContratacao')}"
+										th:errors="*{tempoContratacao}" class="text-danger"></span>
 								</div>
 								
 							</div>
@@ -427,55 +425,55 @@
 							<div class="row">
 								<BR />
 								<div class="form-group col-md-3">
-									<label for="cep" class="col-form-label labels">CEP</label> <input
+									<label for="cepResidencial" class="col-form-label labels">CEP</label> <input
 										type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'"
-										th:field="*{cep}" class="form-control" id="cep"
+										th:field="*{cepResidencial}" class="form-control" id="cepResidencial"
 										placeholder="CEP" th:onchange="consultarCep(this);"> <span
-										th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"
+										th:if="${#fields.hasErrors('cepResidencial')}" th:errors="*{cepResidencial}"
 										class="text-danger"></span>
 								</div>
 
 								<div class="form-group col-md-6">
-									<label for="logradouro" class="col-form-label labels">Logradouro</label>
-									<input type="text" th:field="*{logradouro}"
-										class="form-control" id="logradouro" placeholder="Logradouro">
-									<span th:if="${#fields.hasErrors('logradouro')}"
-										th:errors="*{logradouro}" class="text-danger"></span>
+									<label for="logradouroResidencial" class="col-form-label labels">Logradouro</label>
+									<input type="text" th:field="*{logradouroResidencial}"
+										class="form-control" id="logradouroResidencial" placeholder="Logradouro">
+									<span th:if="${#fields.hasErrors('logradouroResidencial')}"
+										th:errors="*{logradouroResidencial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="numero" class="col-form-label labels">Número</label>
-									<input type="number" th:field="*{numero}" class="form-control"
-										id="numero" placeholder="Número"> <span
-										th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"
+									<label for="numeroResidencial" class="col-form-label labels">Número</label>
+									<input type="number" th:field="*{numeroResidencial}" class="form-control"
+										id="numeroResidencial" placeholder="Número"> <span
+										th:if="${#fields.hasErrors('numeroResidencial')}" th:errors="*{numeroResidencial}"
 										class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="complemento" class="col-form-label labels">Complemento</label>
-									<input type="text" th:field="*{complemento}"
-										class="form-control" id="complemento"
+									<label for="complementoResidencial" class="col-form-label labels">Complemento</label>
+									<input type="text" th:field="*{complementoResidencial}"
+										class="form-control" id="complementoResidencial"
 										placeholder="Complemento"> <span
-										th:if="${#fields.hasErrors('complemento')}"
-										th:errors="*{complemento}" class="text-danger"></span>
+										th:if="${#fields.hasErrors('complementoResidencial')}"
+										th:errors="*{complementoResidencial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="bairro" class="col-form-label labels">Bairro</label>
-									<input type="text" th:field="*{bairro}" class="form-control"
-										id="bairro" placeholder="Bairro"> <span
-										th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"
+									<label for="bairroResidencial" class="col-form-label labels">Bairro</label>
+									<input type="text" th:field="*{bairroResidencial}" class="form-control"
+										id="bairroResidencial" placeholder="Bairro"> <span
+										th:if="${#fields.hasErrors('bairroResidencial')}" th:errors="*{bairroResidencial}"
 										class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="localidade" class="col-form-label labels">Cidade</label>
-									<input type="text" th:field="*{localidade}"
-										class="form-control" id="localidade" placeholder="Cidade">
-									<span th:if="${#fields.hasErrors('localidade')}"
-										th:errors="*{localidade}" class="text-danger"></span>
+									<label for="localidadeResidencial" class="col-form-label labels">Cidade</label>
+									<input type="text" th:field="*{localidadeResidencial}"
+										class="form-control" id="localidadeResidencial" placeholder="Cidade">
+									<span th:if="${#fields.hasErrors('localidadeResidencial')}"
+										th:errors="*{localidadeResidencial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-2">
-									<label for="estado" class="col-form-label labels">Estado</label>
-									<input type="text" th:field="*{estado}" class="form-control"
-										id="estado" placeholder="Estado"> <span
-										th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"
+									<label for="estadoResidencial" class="col-form-label labels">Estado</label>
+									<input type="text" th:field="*{estadoResidencial}" class="form-control"
+										id="estadoResidencial" placeholder="Estado"> <span
+										th:if="${#fields.hasErrors('estadoResidencial')}" th:errors="*{estadoResidencial}"
 										class="text-danger"></span>
 								</div>
 							</div>
@@ -561,7 +559,7 @@
 										type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'"
 															 class="form-control" id="cepComercial"
 										placeholder="CEP" th:onchange="consultarCep(this);"> <span
-										th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"
+										th:if="${#fields.hasErrors('cepComercial')}" th:errors="*{cepComercial}"
 										class="text-danger"></span>
 								</div>
 								
@@ -569,14 +567,14 @@
 									<label for="logradouroComercial" class="col-form-label labels">Logradouro</label>
 									<input type="text" 
 										class="form-control" id="logradouroComercial" placeholder="Logradouro">
-									<span th:if="${#fields.hasErrors('logradouro')}"
-										th:errors="*{logradouro}" class="text-danger"></span>
+									<span th:if="${#fields.hasErrors('logradouroComercial')}"
+										th:errors="*{logradouroComercial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
 									<label for="numeroComercial" class="col-form-label labels">Número</label>
 									<input type="number"                 class="form-control"
 										id="numeroComercial" placeholder="Número"> <span
-										th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"
+										th:if="${#fields.hasErrors('numeroComercial')}" th:errors="*{numeroComercial}"
 										class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
@@ -584,28 +582,28 @@
 									<input type="text" 
 										class="form-control" id="complementoComercial"
 										placeholder="Complemento"> <span
-										th:if="${#fields.hasErrors('complemento')}"
-										th:errors="*{complemento}" class="text-danger"></span>
+										th:if="${#fields.hasErrors('complementoComercial')}"
+										th:errors="*{complementoComercial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="bairroComercial" class="col-form-label labels">Bairro</label>
 									<input type="text"                 class="form-control"
 										id="bairroComercial" placeholder="Bairro"> <span
-										th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"
+										th:if="${#fields.hasErrors('bairroComercial')}" th:errors="*{bairroComercial}"
 										class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
 									<label for="localidadeComercial" class="col-form-label labels">Cidade</label>
 									<input type="text" 
 										class="form-control" id="localidadeComercial" placeholder="Cidade">
-									<span th:if="${#fields.hasErrors('localidade')}"
-										th:errors="*{localidade}" class="text-danger"></span>
+									<span th:if="${#fields.hasErrors('localidadeComercial')}"
+										th:errors="*{localidadeComercial}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-2">
 									<label for="estadoComercial" class="col-form-label labels">Estado</label>
 									<input type="text" 					 class="form-control"
 										id="estadoComercial" placeholder="Estado"> <span
-										th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"
+										th:if="${#fields.hasErrors('estadoComercial')}" th:errors="*{estadoComercial}"
 										class="text-danger"></span>
 								</div>
 

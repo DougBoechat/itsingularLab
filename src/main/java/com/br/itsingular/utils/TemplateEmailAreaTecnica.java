@@ -72,31 +72,31 @@ public class TemplateEmailAreaTecnica {
 		sb.append("---------------------------------------------------------------------------------------------------------------");
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Logradouro: "
-						+ funcionario.getCep() + "</P><BR>");
+						+ funcionario.getCepResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Logradouro: "
-						+ funcionario.getLogradouro() + "</P><BR>");
+						+ funcionario.getLogradouroResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Número: "
-						+ funcionario.getNumero() + "</P><BR>");
+						+ funcionario.getNumeroResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Complemento: "
-						+ funcionario.getComplemento() + "</P><BR>");
+						+ funcionario.getComplementoResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Bairro: "
-						+ funcionario.getBairro() + "</P><BR>");
+						+ funcionario.getBairroResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Cidade: "
-						+ funcionario.getLocalidade() + "</P><BR>");
+						+ funcionario.getLocalidadeResidencial() + "</P><BR>");
 		
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Estado: "
-						+ funcionario.getEstado() + "</P><BR>");
+						+ funcionario.getEstadoResidencial() + "</P><BR>");
 		
 		sb.append("---------------------------------------------------------------------------------------------------------------");
 		
