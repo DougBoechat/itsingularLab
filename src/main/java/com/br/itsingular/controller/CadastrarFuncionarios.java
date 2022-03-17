@@ -49,6 +49,11 @@ public class CadastrarFuncionarios {
 	public ModelAndView cadastrarAtualizarFuncionario(@Valid Funcionarios funcionarios, BindingResult resul) {
 		ModelAndView model = new ModelAndView("CadastrarFuncionarios");
 		model.addObject("login", session.getAttribute("login"));
+		
+		LocalDate dataInicio = funcionarios.getDataContratacao();
+		LocalDate dataFim = funcionarios.getDataFimContratacao();
+		funcionarioServices.validaDataContratacao(dataInicio, dataFim);
+		
 		if (resul.hasErrors()) {
 			model.addObject("listarFuncionarios", funcionarioServices.findFuncionarios());
 			return model;
