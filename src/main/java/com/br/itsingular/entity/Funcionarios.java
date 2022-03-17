@@ -56,6 +56,10 @@ public class Funcionarios implements Serializable{
 	
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
+	private TipoCargo tecnologiaPrincipal;
+	
+	@NotNull(message = "Campo obrigatório")
+	@Enumerated(EnumType.STRING)
 	private TipoNivel nivelContratacao;
 	
 	@NotNull(message = "Campo obrigatório")

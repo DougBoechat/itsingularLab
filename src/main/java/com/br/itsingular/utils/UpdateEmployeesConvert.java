@@ -25,6 +25,7 @@ public class UpdateEmployeesConvert {
 		//Dados para Contratacao
 		update.set("departamento", f.getDepartamento());
 		update.set("cargo", f.getCargo());
+		update.set("tecnologiaPrincipal", f.getTecnologiaPrincipal());
 		update.set("nivelContratacao", f.getNivelContratacao());
 		update.set("atuacao", f.getAtuacao());
 		update.set("clienteParceiros", f.getClienteParceiros());
