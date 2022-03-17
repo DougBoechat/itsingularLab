@@ -291,8 +291,8 @@
 										<option
 											th:each="tecnologiaPrincipal : ${T(com.br.itsingular.enums.TecnologiaPrincipal).values()}"
 											th:value="${tecnologiaPrincipal}" th:text="${tecnologiaPrincipal}"></option>
-									 	</select> <span th:if="${#fields.hasErrors('cargo')}"
-											th:errors="*{cargo}" class="text-danger"></span>
+									 	< </select> <span th:if="${#fields.hasErrors('tecnologiaPrincipal')}"
+											th:errors="*{tecnologiaPrincipal}" class="text-danger"></span>
 								</div>
 								
 								<div class="form-group col-md-3">
