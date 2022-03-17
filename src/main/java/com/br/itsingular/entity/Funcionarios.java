@@ -77,9 +77,16 @@ public class Funcionarios implements Serializable{
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TipoContratacao tipoContratacao;
+	
+	@NotNull(message = "Campo obrigatório")
+	@Enumerated(EnumType.STRING)
+	private TipoContratacao tempoContratacao;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String remuneracaoCLT;
 
 	@NotBlank(message = "Campo obrigatório")
-	private String remuneracao;
+	private String remuneracaoPJ;
 	
 	private String valorTransporte;
 
@@ -119,22 +126,46 @@ public class Funcionarios implements Serializable{
 	
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String logradouro;
+	private String logradouroResidencial;
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String bairro;
+	private String bairroResidencial;
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String estado;
+	private String estadoResidencial;
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String numero;
+	private String localidadeResidencial;
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String complemento;
+	private String numeroResidencial;
 	
 	@NotBlank(message = "Campo obrigatório")
-	private String cep;
+	private String complementoResidencial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String cepResidencial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String logradouroComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String bairroComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String estadoComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String localidadeComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String numeroComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String complementoComercial;
+	
+	@NotBlank(message = "Campo obrigatório")
+	private String cepComercial;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoBanco banco;
@@ -158,8 +189,9 @@ public class Funcionarios implements Serializable{
 	@NotBlank(message = "Campo obrigatório")
 	private String email;
 	
-	@NotBlank(message = "Campo obrigatório")
-	private String localidade;
+	private String emailCorporativo;
+	
+	
 	
 	private String observacao;
 	

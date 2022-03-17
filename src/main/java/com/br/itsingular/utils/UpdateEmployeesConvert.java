@@ -21,6 +21,7 @@ public class UpdateEmployeesConvert {
 		update.set("numeroCelular", f.getNumeroCelular());
 		update.set("numeroTelefone", f.getNumeroTelefone());
 		update.set("email", f.getEmail());
+		update.set("emailCorporativo", f.getEmailCorporativo());
 		
 		//Dados para Contratacao
 		update.set("departamento", f.getDepartamento());
@@ -31,7 +32,8 @@ public class UpdateEmployeesConvert {
 		update.set("clienteParceiros", f.getClienteParceiros());
 		update.set("gestores", f.getGestores());
 		update.set("tipoContratacao", f.getTipoContratacao());
-		update.set("remuneracao", f.getRemuneracao());
+		update.set("remuneracaoCLT", f.getRemuneracaoCLT());
+		update.set("remuneracaoPJ", f.getRemuneracaoPJ());
 		update.set("valortransporte", f.getValorTransporte());
 		update.set("valorVrVA", f.getValorVrVA());
 		update.set("valorPlanoSaude", f.getValorPlanoSaude());
@@ -39,15 +41,19 @@ public class UpdateEmployeesConvert {
 		update.set("dataContratacao", f.getDataContratacao());
 		update.set("dataFimContratacao", f.getDataFimContratacao());
 		update.set("statusFuncionario", f.getStatusFuncionario());
+		update.set("nivelFimContratacao", f.getNivelFimContratacao());
+		update.set("tempoContratacao", f.getTempoContratacao());
+
+
 		
 		//Dados do Logradouro 
-		update.set("logradouro", f.getLogradouro());
-		update.set("bairro", f.getBairro());
-		update.set("estado", f.getEstado());
-		update.set("numero", f.getNumero());
-		update.set("complemento", f.getComplemento());
-		update.set("localidade", f.getLocalidade());
-		update.set("cep", f.getCep());
+		update.set("logradouroResidencial", f.getLogradouroResidencial());
+		update.set("bairroResidencial", f.getBairroResidencial());
+		update.set("estadoResidencial", f.getEstadoResidencial());
+		update.set("numeroResidencial", f.getNumeroResidencial());
+		update.set("complementoResidencial", f.getComplementoResidencial());
+		update.set("localidadeResidencial", f.getLocalidadeResidencial());
+		update.set("cepResidencial", f.getCepResidencial());
 		
 		//Dados bancários
 		update.set("tipoConta", f.getTipoConta());
@@ -58,6 +64,13 @@ public class UpdateEmployeesConvert {
 		//Se PJ, Dados da Empresa
 		update.set("cnpj", f.getCnpj());
 		update.set("nomeEmpresa", f.getNomeEmpresa());
+		update.set("logradouroComercial", f.getLogradouroComercial());
+		update.set("bairroComercial", f.getBairroComercial());
+		update.set("estadoComercial", f.getEstadoComercial());
+		update.set("localidadeComercial", f.getLocalidadeComercial());
+		update.set("numeroComercial", f.getNumeroComercial());
+		update.set("complementoComercial", f.getComplementoComercial());
+		update.set("cepComercial", f.getCepComercial());
 		
 		update.set("necessarioDominioITSingular", f.getNecessarioDominioITSingular());
 		update.set("NecessarioNotebookITSingular", f.getNecessarioNotebookITSingular());
