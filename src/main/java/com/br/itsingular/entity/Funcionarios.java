@@ -23,11 +23,7 @@ import com.br.itsingular.enums.TipoBanco;
 import com.br.itsingular.enums.TipoCargo;
 import com.br.itsingular.enums.TipoConta;
 import com.br.itsingular.enums.TipoContratacao;
-import com.br.itsingular.enums.TipoCor;
-import com.br.itsingular.enums.TipoEstado;
-import com.br.itsingular.enums.TipoEstadoCivil;
 import com.br.itsingular.enums.TipoGenero;
-import com.br.itsingular.enums.TipoGrauInstrucao;
 import com.br.itsingular.enums.TipoNivel;
 
 import lombok.AllArgsConstructor;
@@ -111,8 +107,6 @@ public class Funcionarios implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private StatusFuncionario statusFuncionario;
 
-	@Enumerated(EnumType.STRING)
-	private TipoNivel nivelFimContratacao;
 	
 	@NotBlank(message = "Campo obrigatório")
 	private String rg;
@@ -127,22 +121,9 @@ public class Funcionarios implements Serializable{
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TipoGenero genero;
-
-	@NotNull(message = "Campo obrigatório")
-	@Enumerated(EnumType.STRING)
-	private TipoCor cor;
 	
 	private Integer idade;
 	
-	@NotNull(message = "Campo obrigatório")
-	@Enumerated(EnumType.STRING)
-	private TipoEstado naturalidade;
-	
-	@NotNull(message = "Campo obrigatório")
-	@Enumerated(EnumType.STRING)
-	private TipoEstadoCivil estadoCivil;
-	
-	private Integer quantidadeFilhos;
 	
 	@NotBlank(message = "Campo obrigatório")
 	private String logradouroResidencial;
@@ -185,10 +166,6 @@ public class Funcionarios implements Serializable{
 	
 	@NotBlank(message = "Campo obrigatório")
 	private String cepComercial;
-	
-	@NotNull(message = "Campo obrigatório")
-	@Enumerated(EnumType.STRING)
-	private TipoGrauInstrucao grauInstrucao;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoBanco banco;

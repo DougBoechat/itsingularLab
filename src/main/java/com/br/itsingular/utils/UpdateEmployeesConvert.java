@@ -15,12 +15,7 @@ public class UpdateEmployeesConvert {
 		update.set("cpf", f.getCpf());
 		update.set("dataNascimento", f.getDataNascimento());
 		update.set("genero", f.getGenero());
-		update.set("cor", f.getCor());
 		update.set("idade", f.getIdade());
-		update.set("naturalidade", f.getNaturalidade());
-		update.set("estadoCivil", f.getEstadoCivil());
-		update.set("quantidadeFilhos", f.getQuantidadeFilhos());
-		update.set("grauInstrucao", f.getGrauInstrucao());
 		
 		//Dados de contato
 		update.set("numeroCelular", f.getNumeroCelular());
@@ -48,6 +43,8 @@ public class UpdateEmployeesConvert {
 		update.set("statusFuncionario", f.getStatusFuncionario());
 		update.set("nivelFimContratacao", f.getNivelFimContratacao());
 		update.set("tempoContratacao", f.getTempoContratacao());
+
+
 		
 		//Dados do Logradouro 
 		update.set("logradouroResidencial", f.getLogradouroResidencial());
