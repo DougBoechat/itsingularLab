@@ -41,7 +41,6 @@ public class UpdateEmployeesConvert {
 		update.set("dataContratacao", f.getDataContratacao());
 		update.set("dataFimContratacao", f.getDataFimContratacao());
 		update.set("statusFuncionario", f.getStatusFuncionario());
-		update.set("nivelFimContratacao", f.getNivelFimContratacao());
 		update.set("tempoContratacao", f.getTempoContratacao());
 
 

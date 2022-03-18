@@ -318,7 +318,9 @@
 										type="date" th:field="*{dataFimContratacao}"
 										th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}"
 										class="form-control" id="dataFimContratacao"
-										placeholder="Data fim Contratação">
+										placeholder="Data fim Contratação"> <span
+										th:if="${#fields.hasErrors('dataFimContratacao')}"
+										th:errors="*{dataFimContratacao}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
 									<label for="tipoContratacao" class="col-form-label labels">Contratação</label>
