@@ -324,10 +324,10 @@
 								</div>
 								<div class="form-group col-md-3">
 									<label for="tipoContratacao" class="col-form-label labels">Contratação</label>
-									<select class="form-control" th:field="*{tipoContratacao}">
+									<select id="tipoContratacao" class="form-control" th:field="*{tipoContratacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
-											th:each="tipoContratacao : ${T(com.br.itsingular.enums.TipoContratacao).values()}"
+											id="contratacao" th:each="tipoContratacao : ${T(com.br.itsingular.enums.TipoContratacao).values()}"
 											th:value="${tipoContratacao}" th:text="${tipoContratacao}"></option>
 									</select> <span th:if="${#fields.hasErrors('tipoContratacao')}"
 										th:errors="*{tipoContratacao}" class="text-danger"></span>
@@ -367,7 +367,7 @@
 							</div>
 						</div>
 
-						<div class="panel panel-default">
+						<div id="beneficios" class="panel panel-default" style="display: none">
 							<div class="panel-heading">
 								<div class="panel-heading">
 									<div class="clearfix">
@@ -778,8 +778,27 @@
 		 div.appendChild(inputConta);
 
         box.appendChild(div);
-    }  
-
+        
+    }
+    
+  
+   $('#tipoContratacao').change(function() {
+		
+		var valor = $('#tipoContratacao').val();
+			
+		if(valor == 'CLT') {
+			
+		$('#beneficios').css('display', 'block');
+		
+		} else {
+			
+			$('#beneficios').css('display', 'none');
+		}		
+		
+	
+	 });
+    
+ 
 	</script>
 	
 </body>
