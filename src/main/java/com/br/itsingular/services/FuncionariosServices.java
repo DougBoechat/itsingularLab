@@ -54,18 +54,16 @@ public class FuncionariosServices {
 		Integer anoAtual = LocalDate.now().getYear();
 		Integer anoInicio = dataInicio != null ? dataInicio.getYear() : null;
 		Integer anoFinal = dataFim != null ? dataFim.getYear() : null;
-		
-		if (anoInicio != null && anoFinal != null) {
-			if (anoInicio >= anoAtual && anoFinal >= anoAtual) {
+
+		if (anoInicio != null || anoFinal == null) {
+			if (anoInicio == anoAtual) {
 				return Boolean.TRUE;
 			}
-			
-			if (anoInicio < anoAtual && anoFinal < anoAtual) {
-				throw new NumberFormatException("Ano inválido");
-			}
+
 		}
 
 		return Boolean.FALSE;
+
 	}
 
 }
