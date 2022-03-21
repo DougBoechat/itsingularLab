@@ -18,6 +18,7 @@ import com.br.itsingular.enums.ClientesParceiros;
 import com.br.itsingular.enums.DepartamentoITSingular;
 import com.br.itsingular.enums.Gestores;
 import com.br.itsingular.enums.StatusFuncionario;
+import com.br.itsingular.enums.TecnologiaPrincipal;
 import com.br.itsingular.enums.TipoAtuacao;
 import com.br.itsingular.enums.TipoBanco;
 import com.br.itsingular.enums.TipoCargo;
@@ -54,9 +55,9 @@ public class Funcionarios implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private TipoCargo cargo;
 	
-	//@NotNull(message = "Campo obrigatório")
+	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
-	private TipoCargo tecnologiaPrincipal;
+	private TecnologiaPrincipal tecnologiaPrincipal;
 	
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
