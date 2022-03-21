@@ -80,7 +80,7 @@ public class Funcionarios implements Serializable{
 	
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
-	private TipoContratacao tempoContratacao;
+	private String tempoContratacao;
 	
 	@NotBlank(message = "Campo obrigatório")
 	private String remuneracaoCLT;
