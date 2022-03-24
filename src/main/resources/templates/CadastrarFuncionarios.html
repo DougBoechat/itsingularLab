@@ -467,7 +467,7 @@
 
 							<div id="dadosBancarios">
 
-								<div id="row" class="row">
+								<div id="rowDadosBancarios" class="row">
 									<BR />
 									<div class="form-group col-md-3">
 										<label for="tipoConta" class="col-form-label labels">Tipo
@@ -498,17 +498,24 @@
 										<input type="text" th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
 											class="form-control" id="conta" placeholder="Nº Conta">
 									</div>
-									
-									<button type="button" class="btn btn-danger btn-sm" style="margin-top: 30px; margin-bottom: 20px;" > - </button>
-									
-									
+
 								</div>
-																
-								<div id="box"> </div>							
+
+								<div id="removeBtn"
+									style="margin-top: -47px; margin-bottom: 20px; margin-left: 1020px;">
+
+									<button id="remove" type="button" class="  btn btn-danger btn-sm"> - </button>
+
+								</div>
+
+								<div id="box" style="margin-top: 50px;">
+									
+								 </div>
 
 								<div style="margin-top: 15px;">
 
-									<button type="button" class="btn btn-success" id="add">Novos Dados Bancários</button>
+									<button type="button" class="btn btn-success" id="add">Novos Dados
+										Bancários</button>
 								</div>
 
 							</div>
@@ -648,25 +655,50 @@
 	<script>
 
 		var btn_add = document.getElementById('add');
-
 		btn_add.addEventListener('click', function () {
 
-			duplicate();
+			duplicateDiv();
+			duplicateBtn();
 
 		});
 
-
-		function duplicate() {
+		contador = 1;
+		function duplicateDiv() {
 
 			var box = document.getElementById("box");
+			var node = document.getElementById("rowDadosBancarios");
 
-			var node = document.getElementById("row");
 			var clone = node.cloneNode(true);
+			clone.setAttribute('id', 'rowDadosBancarios' + contador);
 
-			var body = document.body.appendChild(clone);
-			box.appendChild(body);
-	
-		}
+			box.appendChild(clone);
+
+		};
+
+
+		function duplicateBtn() {
+
+			var box = document.getElementById("box");
+			var node = document.getElementById("removeBtn");
+
+			var clone = node.cloneNode(true);
+			clone.setAttribute('id', 'removeBtn' + contador);
+
+			box.appendChild(clone);
+			contador++
+
+		};
+
+
+		var remove_btn = document.getElementById("removeBtn");
+		remove_btn.addEventListener('click', function () {
+
+			var row = document.getElementById("rowDadosBancarios");
+			var btn = document.getElementById("remove");
+			row.remove();
+			btn.remove();
+
+		});
 
 
 		$('#tipoContratacao').change(function () {
