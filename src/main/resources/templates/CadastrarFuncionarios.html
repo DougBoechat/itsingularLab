@@ -501,20 +501,20 @@
 
 								</div>
 
-								<div id="removeBtn"
-									style="margin-top: -47px; margin-bottom: 20px; margin-left: 1020px;">
+								<!--	<div id="removeBtn"  style="margin-top: -47px; margin-bottom: 20px; margin-left: 1000px;">
 
-									<button id="remove" type="button" class="  btn btn-danger btn-sm"> - </button>
+									<button id="remove" type="button" class="  btn btn-danger btn-sm"> - </button> 
+
+								</div> -->
+
+								<div id="box" style="margin-top: 15px;">
 
 								</div>
 
-								<div id="box" style="margin-top: 50px;">
-									
-								 </div>
-
 								<div style="margin-top: 15px;">
 
-									<button type="button" class="btn btn-success" id="add">Novos Dados
+									<button type="button" class="btn btn-success" id="add"
+										style="margin-top: 15px">Novos Dados
 										Bancários</button>
 								</div>
 
@@ -654,19 +654,23 @@
 
 	<script>
 
+		contador = 1;
+
 		var btn_add = document.getElementById('add');
 		btn_add.addEventListener('click', function () {
 
+
 			duplicateDiv();
-			duplicateBtn();
+			duplicateBtn(contador);
+			contador++
 
 		});
 
-		contador = 1;
+
 		function duplicateDiv() {
 
-			var box = document.getElementById("box");
-			var node = document.getElementById("rowDadosBancarios");
+			var box = document.getElementById('box');
+			var node = document.getElementById('rowDadosBancarios');
 
 			var clone = node.cloneNode(true);
 			clone.setAttribute('id', 'rowDadosBancarios' + contador);
@@ -676,29 +680,43 @@
 		};
 
 
-		function duplicateBtn() {
+		function duplicateBtn(contador) {
 
-			var box = document.getElementById("box");
-			var node = document.getElementById("removeBtn");
+			var box = document.getElementById('box');
 
-			var clone = node.cloneNode(true);
-			clone.setAttribute('id', 'removeBtn' + contador);
+			var btn = document.createElement('button');
+			btn.setAttribute('id', 'btn' + contador);
+			btn.setAttribute('type', 'button');
+			btn.setAttribute('class', 'btn btn-danger btn-sm');
+			btn.setAttribute('style', 'margin-left: 1000px');
+			btn.textContent = ' Excluir ';
 
-			box.appendChild(clone);
-			contador++
+			box.appendChild(btn);
 
+			btn.addEventListener('click', removeCampo(contador));
 		};
 
+		function removeCampo(contador) {
 
-		var remove_btn = document.getElementById("removeBtn");
-		remove_btn.addEventListener('click', function () {
+			var div = getElementById('rowDadosBancarios' + contador).remove();
+			var deleteButton = document.getElementById('btn' + contador).remove();
+			//deleteButton.addEventListener("click", remove());
+		}
 
-			var row = document.getElementById("rowDadosBancarios");
-			var btn = document.getElementById("remove");
-			row.remove();
-			btn.remove();
 
-		});
+
+
+
+
+		/*	var remove_btn = document.getElementById(removeBtn);
+			function removeBtn (contador) {
+	
+				var row = document.getElementById('rowDadosBancarios' + contador);
+				var btn = document.getElementById('removeBtn');
+				row.remove();
+				btn.remove();
+	
+			};   */
 
 
 		$('#tipoContratacao').change(function () {
