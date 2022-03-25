@@ -83,10 +83,8 @@ public class Funcionarios implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private String tempoContratacao;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String remuneracaoCLT;
 
-	@NotBlank(message = "Campo obrigatório")
 	private String remuneracaoPJ;
 	
 	private String valorTransporte;
@@ -147,25 +145,18 @@ public class Funcionarios implements Serializable{
 	@NotBlank(message = "Campo obrigatório")
 	private String cepResidencial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String logradouroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String bairroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String estadoComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String localidadeComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String numeroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String complementoComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String cepComercial;
 	
 	@Enumerated(EnumType.STRING)
