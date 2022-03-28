@@ -19,6 +19,7 @@ import com.br.itsingular.enums.DepartamentoITSingular;
 import com.br.itsingular.enums.Gestores;
 import com.br.itsingular.enums.StatusFuncionario;
 import com.br.itsingular.enums.TecnologiaPrincipal;
+import com.br.itsingular.enums.TempoContratacao;
 import com.br.itsingular.enums.TipoAtuacao;
 import com.br.itsingular.enums.TipoBanco;
 import com.br.itsingular.enums.TipoCargo;
@@ -81,7 +82,7 @@ public class Funcionarios implements Serializable{
 	
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
-	private String tempoContratacao;
+	private TempoContratacao tempoContratacao;
 	
 	private String remuneracaoCLT;
 
