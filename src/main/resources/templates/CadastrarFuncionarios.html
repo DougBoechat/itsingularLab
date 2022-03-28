@@ -501,15 +501,7 @@
 
 								</div>
 
-								<!--	<div id="removeBtn"  style="margin-top: -47px; margin-bottom: 20px; margin-left: 1000px;">
-
-									<button id="remove" type="button" class="  btn btn-danger btn-sm"> - </button> 
-
-								</div> -->
-
-								<div id="box" style="margin-top: 15px;">
-
-								</div>
+								<div id="box" style="margin-top: 15px;"> </div>
 
 								<div style="margin-top: 15px;">
 
@@ -655,69 +647,51 @@
 	<script>
 
 		contador = 1;
+		
 
 		var btn_add = document.getElementById('add');
 		btn_add.addEventListener('click', function () {
 
-
-			duplicateDiv();
-			duplicateBtn(contador);
+			duplicateDiv(event);
 			contador++
 
 		});
+		
+		
+		function removerCampos() {
+			
+			var posicao = event.target.getAttribute('id');
+			console.log(posicao);
+			
+			var div = document.getElementById("rowDadosBancarios" + posicao);
+			div.remove();
+		
+		}
 
 
-		function duplicateDiv() {
+		function duplicateDiv(event) {
 
 			var box = document.getElementById('box');
 			var node = document.getElementById('rowDadosBancarios');
 
 			var clone = node.cloneNode(true);
-			clone.setAttribute('id', 'rowDadosBancarios' + contador);
-
+			clone.setAttribute('id', "rowDadosBancarios" + contador);
+			
 			box.appendChild(clone);
-
-		};
-
-
-		function duplicateBtn(contador) {
-
-			var box = document.getElementById('box');
-
+	
 			var btn = document.createElement('button');
-			btn.setAttribute('id', 'btn' + contador);
+			btn.setAttribute('id', contador);
 			btn.setAttribute('type', 'button');
-			btn.setAttribute('class', 'btn btn-danger btn-sm');
-			btn.setAttribute('style', 'margin-left: 1000px');
-			btn.textContent = ' Excluir ';
+			btn.setAttribute('class', 'btn btn-outline-danger');
+			btn.setAttribute('style', 'height: 90px');		
+			btn.textContent = 'Excluir';			
+						
+			clone.appendChild(btn);		
+			
+			btn.addEventListener('click', removerCampos);
 
-			box.appendChild(btn);
-
-			btn.addEventListener('click', removeCampo(contador));
 		};
-
-		function removeCampo(contador) {
-
-			var div = getElementById('rowDadosBancarios' + contador).remove();
-			var deleteButton = document.getElementById('btn' + contador).remove();
-			//deleteButton.addEventListener("click", remove());
-		}
-
-
-
-
-
-
-		/*	var remove_btn = document.getElementById(removeBtn);
-			function removeBtn (contador) {
-	
-				var row = document.getElementById('rowDadosBancarios' + contador);
-				var btn = document.getElementById('removeBtn');
-				row.remove();
-				btn.remove();
-	
-			};   */
-
+		
 
 		$('#tipoContratacao').change(function () {
 
