@@ -19,6 +19,7 @@ import com.br.itsingular.enums.DepartamentoITSingular;
 import com.br.itsingular.enums.Gestores;
 import com.br.itsingular.enums.StatusFuncionario;
 import com.br.itsingular.enums.TecnologiaPrincipal;
+import com.br.itsingular.enums.TempoContratacao;
 import com.br.itsingular.enums.TipoAtuacao;
 import com.br.itsingular.enums.TipoBanco;
 import com.br.itsingular.enums.TipoCargo;
@@ -81,12 +82,10 @@ public class Funcionarios implements Serializable{
 	
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
-	private String tempoContratacao;
+	private TempoContratacao tempoContratacao;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String remuneracaoCLT;
 
-	@NotBlank(message = "Campo obrigatório")
 	private String remuneracaoPJ;
 	
 	private String valorTransporte;
@@ -147,25 +146,18 @@ public class Funcionarios implements Serializable{
 	@NotBlank(message = "Campo obrigatório")
 	private String cepResidencial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String logradouroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String bairroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String estadoComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String localidadeComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String numeroComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String complementoComercial;
 	
-	@NotBlank(message = "Campo obrigatório")
 	private String cepComercial;
 	
 	@Enumerated(EnumType.STRING)

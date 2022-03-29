@@ -335,11 +335,13 @@
 								</div>
 
 								<div class="form-group col-md-3">
-									<label for="tempoContratacao" class="col-form-label labels">Tempo de
-										Contrato</label>
-									<input type="text" th:field="*{tempoContratacao}" class="form-control"
-										id="tempoContratacao">
-									<span th:if="${#fields.hasErrors('tempoContratacao')}"
+									<label for="tempoContratacao" class="col-form-label labels">Tempo de Contratação</label>
+									<select id="tempoContratacao" class="form-control" th:field="*{tempoContratacao}">
+										<option th:value="''" th:text="SELECIONE"></option>
+										<option
+											id="tempoContratacao" th:each="tempoContratacao : ${T(com.br.itsingular.enums.TempoContratacao).values()}"
+											th:value="${tempoContratacao}" th:text="${tempoContratacao}"></option>
+									</select> <span th:if="${#fields.hasErrors('tempoContratacao')}"
 										th:errors="*{tempoContratacao}" class="text-danger"></span>
 								</div>
 
@@ -660,8 +662,10 @@
 		
 		function removerCampos() {
 			
-			var posicao = event.target.getAttribute('id');
-			console.log(posicao);
+		if(valor == 'CLT' || valor == 'FLEX') {
+      
+      var posicao = event.target.getAttribute('id');
+      console.log(posicao);
 			
 			var div = document.getElementById("rowDadosBancarios" + posicao);
 			div.remove();
