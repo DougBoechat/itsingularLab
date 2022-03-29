@@ -650,22 +650,18 @@
 
 		contador = 1;
 		
-
 		var btn_add = document.getElementById('add');
 		btn_add.addEventListener('click', function () {
 
-			duplicateDiv(event);
+			duplicateDiv();
 			contador++
 
 		});
 		
 		
-		function removerCampos() {
-			
-		if(valor == 'CLT' || valor == 'FLEX') {
+		function removerCampos() {	
       
-      var posicao = event.target.getAttribute('id');
-      console.log(posicao);
+      		var posicao = event.target.getAttribute('id');
 			
 			var div = document.getElementById("rowDadosBancarios" + posicao);
 			div.remove();
@@ -673,7 +669,7 @@
 		}
 
 
-		function duplicateDiv(event) {
+		function duplicateDiv() {
 
 			var box = document.getElementById('box');
 			var node = document.getElementById('rowDadosBancarios');
@@ -701,7 +697,7 @@
 
 			var valor = $('#tipoContratacao').val();
 
-			if (valor == 'CLT') {
+			if(valor == 'CLT' || valor == 'FLEX') {
 
 				$('#beneficios').css('display', 'block');
 
