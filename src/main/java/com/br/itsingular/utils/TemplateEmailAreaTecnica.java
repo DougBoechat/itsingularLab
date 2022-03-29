@@ -66,12 +66,12 @@ public class TemplateEmailAreaTecnica {
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">E-mail: "
 						+ funcionario.getEmail() + "</P><BR>");
 		sb.append(
-				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">E-mail: "
+				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Celular: "
 						+ funcionario.getNumeroCelular() + "</P><BR>");
 		
 		sb.append("---------------------------------------------------------------------------------------------------------------");
 		sb.append(
-				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Logradouro: "
+				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">CEP: "
 						+ funcionario.getCepResidencial() + "</P><BR>");
 		
 		sb.append(
@@ -109,6 +109,9 @@ public class TemplateEmailAreaTecnica {
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Cliente: "
 						+ funcionario.getClienteParceiros().name() + "</P><BR>");
+		sb.append(
+				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Tipo de Contratação: "
+						+ funcionario.getTipoContratacao().name() + "</P><BR>");
 		sb.append(
 				"<P style=\"margin: 0;  font-family: Arial, sans-serif; font-size: 16px; line-height: 140%; color: #3e4049;\">Dt. de Início: "
 						+ funcionario.getDataContratacao().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "</P><BR>");
