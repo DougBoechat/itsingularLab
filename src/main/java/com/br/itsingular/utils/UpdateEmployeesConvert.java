@@ -42,6 +42,8 @@ public class UpdateEmployeesConvert {
 		update.set("dataFimContratacao", f.getDataFimContratacao());
 		update.set("statusFuncionario", f.getStatusFuncionario());
 		update.set("tempoContratacao", f.getTempoContratacao());
+		update.set("modoHoras", f.getModoHoras());
+		update.set("apontamentoHoras", f.getApontamentoHoras());
 
 
 		
