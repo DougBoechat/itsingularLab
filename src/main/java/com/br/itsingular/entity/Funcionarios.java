@@ -14,9 +14,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.br.itsingular.enums.ApontamentoHoras;
 import com.br.itsingular.enums.ClientesParceiros;
 import com.br.itsingular.enums.DepartamentoITSingular;
 import com.br.itsingular.enums.Gestores;
+import com.br.itsingular.enums.ModoHoras;
 import com.br.itsingular.enums.StatusFuncionario;
 import com.br.itsingular.enums.TecnologiaPrincipal;
 import com.br.itsingular.enums.TempoContratacao;
@@ -83,6 +85,14 @@ public class Funcionarios implements Serializable{
 	@NotNull(message = "Campo obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TempoContratacao tempoContratacao;
+	
+	@NotNull(message = "Campo obrigatório")
+	@Enumerated(EnumType.STRING)
+	private ModoHoras modoHoras;
+	
+	@NotNull(message = "Campo obrigatório")
+	@Enumerated(EnumType.STRING)
+	private ApontamentoHoras apontamentoHoras;
 	
 	private String remuneracaoCLT;
 

@@ -180,8 +180,8 @@
 								<div class="form-group col-md-4">
 									<label for="numeroTelefone" class="col-form-label labels">Telefone
 										Opcional</label> <input type="text" th:field="*{numeroTelefone}"
-										class="form-control" id="numeroTelefone" maxlength="11"
-										data-inputmask="'mask': '(99)9999-9999'" placeholder="Telefone Residencial">
+										class="form-control" id="numeroTelefone" maxlength="14"
+										data-inputmask="'mask': '(99)99999-9999'" placeholder="Telefone Opcional">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="email" class="col-form-label labels">E-mail Pessoal</label>
@@ -193,8 +193,9 @@
 								<div class="form-group col-md-4">
 									<label for="emailCorporativo" class="col-form-label labels">E-mail
 										ITSingular</label>
-									<input value="@itsingular.com.br" type="text" th:field="*{emailCorporativo}"
-										class="form-control" id="emailCorporativo">
+									<input value="emailCorporativo" type="text" th:field="*{emailCorporativo}"
+										class="form-control" id="emailCorporativo" data-inputmask="'alias': 'email'">
+										<span th:if="${#fields.hasErrors('emailCorporativo')}" th:errors="*{emailCorporativo}" class="text-danger"></span>
 								</div>
 							</div>
 						</div>
@@ -344,6 +345,30 @@
 									</select> <span th:if="${#fields.hasErrors('tempoContratacao')}"
 										th:errors="*{tempoContratacao}" class="text-danger"></span>
 								</div>
+								
+								<div class="form-group col-md-3">
+									<label for="modoHoras" class="col-form-label labels">Modo de Horas</label>
+									<select id="modoHoras" class="form-control" th:field="*{modoHoras}">
+										<option th:value="''" th:text="SELECIONE"></option>
+										<option
+											id="modoHoras" th:each="modoHoras : ${T(com.br.itsingular.enums.ModoHoras).values()}"
+											th:value="${modoHoras}" th:text="${modoHoras}"></option>
+									</select> <span th:if="${#fields.hasErrors('modoHoras')}"
+										th:errors="*{modoHoras}" class="text-danger"></span>
+								</div>
+								
+								<div class="form-group col-md-3">
+									<label for="apontamentoHoras" class="col-form-label labels">Apontamento de Horas</label>
+									<select id="apontamentoHoras" class="form-control" th:field="*{apontamentoHoras}">
+										<option th:value="''" th:text="SELECIONE"></option>
+										<option
+											id="apontamentoHoras" th:each="apontamentoHoras : ${T(com.br.itsingular.enums.ApontamentoHoras).values()}"
+											th:value="${apontamentoHoras}" th:text="${apontamentoHoras}"></option>
+									</select> <span th:if="${#fields.hasErrors('apontamentoHoras')}"
+										th:errors="*{apontamentoHoras}" class="text-danger"></span>
+								</div>
+
+
 
 							</div>
 						</div>
@@ -621,8 +646,8 @@
 										th:errors="*{necessarioNotebookITSingular}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="observacao" class="col-form-label" style="margin-left: 1px">Observação
-										Colaborador</label> <span class="caracteres">500</span> Restantes <br>
+									<label for="observacao" class="col-form-label" style="margin-left: 1px">Observações</label>
+									<span class="caracteres">500</span> Restantes <br>
 									<textarea maxlength="1000" cols="10" rows="5" th:field="*{observacao}"
 										class="form-control" id="observacao"></textarea>
 									<span th:if="${#fields.hasErrors('observacao')}" th:errors="*{observacao}"

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum TipoNivel {
-	ESTAGIARIO, JUNIOR, PLENO, SENIOR, ESPECIALISTA, VAZIO;
+	ESTAGIARIO, JUNIOR, PLENO, SENIOR, ARQUITETO, ESPECIALISTA, VAZIO;
 	private String tipoNivel;
 	
 }
