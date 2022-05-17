@@ -34,7 +34,7 @@ public class UpdateEmployeesConvert {
 		update.set("tipoContratacao", f.getTipoContratacao());
 		update.set("remuneracaoCLT", f.getRemuneracaoCLT());
 		update.set("remuneracaoPJ", f.getRemuneracaoPJ());
-		update.set("valortransporte", f.getValorTransporte());
+		update.set("valorTransporte", f.getValorTransporte());
 		update.set("valorVrVA", f.getValorVrVA());
 		update.set("valorPlanoSaude", f.getValorPlanoSaude());
 		update.set("valorAuxilioCreche", f.getValorAuxilioCreche());
@@ -55,12 +55,10 @@ public class UpdateEmployeesConvert {
 		update.set("complementoResidencial", f.getComplementoResidencial());
 		update.set("localidadeResidencial", f.getLocalidadeResidencial());
 		update.set("cepResidencial", f.getCepResidencial());
+	
 		
 		//Dados bancários
-		update.set("tipoConta", f.getTipoConta());
-		update.set("banco", f.getBanco());
-		update.set("agencia", f.getAgencia());
-		update.set("conta", f.getConta());
+		update.set("contas", f.getContas());
 		
 		//Se PJ, Dados da Empresa
 		update.set("cnpj", f.getCnpj());

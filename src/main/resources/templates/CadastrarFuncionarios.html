@@ -241,7 +241,7 @@
 										th:errors="*{clienteParceiros}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="gestores" class="col-form-label labels">Comercial</label>
+									<label for="gestores" class="col-form-label labels">Gestor</label>
 									<select class="form-control" th:field="*{gestores}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:each="gestor : ${T(com.br.itsingular.enums.Gestores).values()}"
@@ -305,7 +305,7 @@
 										th:errors="*{dataFimContratacao}" class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-3">
-									<label for="tipoContratacao" class="col-form-label labels">Contratação</label>
+									<label for="tipoContratacao" class="col-form-label labels">Tipo Contratação</label>
 									<select id="tipoContratacao" class="form-control" th:field="*{tipoContratacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option id="contratacao"
@@ -373,7 +373,7 @@
 							</div>
 						</div>
 
-						<div id="beneficios" class="panel panel-default" style="display: none">
+						<div id="beneficios" class="panel panel-default">
 							<div class="panel-heading">
 								<div class="panel-heading">
 									<div class="clearfix">
@@ -494,36 +494,36 @@
 
 							<div id="dadosBancarios">
 
-								<div id="rowDadosBancarios" class="row">
+								<div id="rowDadosBancarios" class="row" th:each="conta, rowStat : ${contas}">
 									<BR />
 									<div class="form-group col-md-3">
 										<label for="tipoConta" class="col-form-label labels">Tipo
-											da Conta</label> <select class="form-control" th:field="*{tipoConta}">
+											da Conta</label> <select class="form-control" th:field="${conta.tipoConta}">
 											<option th:value="''" th:text="SELECIONE"></option>
 											<option
 												th:each="tipoConta : ${T(com.br.itsingular.enums.TipoConta).values()}"
-												th:value="${tipoConta}" th:text="${tipoConta}"></option>
+												th:value="${conta.tipoConta}" th:text="${conta.tipoConta}"></option>
 										</select>
 									</div>
 
 									<div class="form-group col-md-3">
 										<label for="banco" class="col-form-label labels">Banco</label>
-										<select class="form-control" th:field="*{banco}">
+										<select class="form-control" th:field="${conta.banco}">
 											<option th:value="''" th:text="SELECIONE"></option>
 											<option th:each="banco : ${T(com.br.itsingular.enums.TipoBanco).values()}"
-												th:value="${banco}" th:text="${banco}"></option>
+												th:value="${conta.banco}" th:text="${conta.banco}"></option>
 										</select>
-									</div>
+									</div> 
 									<div class="form-group col-md-2">
 										<label for="agencia" class="col-form-label labels">Agência</label>
-										<input type="text" th:field="*{agencia}" data-inputmask="'mask': '9{1,4}-9{1}'"
-											class="form-control" id="agencia" placeholder="Agência Bancária">
+										<input type="text" th:field="${conta.agencia}" data-inputmask="'mask': '9{1,4}-9{1}'"
+											class="form-control" placeholder="Agência Bancária">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="conta" class="col-form-label" style="margin-left: 1px">Nº
 											Conta</label>
-										<input type="text" th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
-											class="form-control" id="conta" placeholder="Nº Conta">
+										<input type="text" th:field="${conta.conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
+											class="form-control" placeholder="Nº Conta">
 									</div>
 
 								</div>
@@ -532,9 +532,8 @@
 
 								<div style="margin-top: 15px;">
 
-									<button type="button" class="btn btn-success" id="add"
-										style="margin-top: 15px">Novos Dados
-										Bancários</button>
+									<button class="btn btn-success" name="addRow" type="button" 
+										style="margin-top: 15px">Novos Dados Bancários</button>
 								</div>
 
 							</div>
@@ -673,7 +672,7 @@
 
 	<script>
 
-		contador = 1;
+	/*	contador = 1;
 		
 		var btn_add = document.getElementById('add');
 		btn_add.addEventListener('click', function () {
@@ -715,19 +714,20 @@
 			
 			btn.addEventListener('click', removerCampos);
 
-		};
+		}; */
 		
 
 		$('#tipoContratacao').change(function () {
 
 			var valor = $('#tipoContratacao').val();
-
-			if(valor == 'CLT' || valor == 'FLEX') {
+			var vlrTransporte = $('#valorTransporte').val();
+			
+			if(valor == 'CLT' || valor == 'FLEX_CLT' || valor == 'FLEX_PJ') {
 
 				$('#beneficios').css('display', 'block');
 
 			} else {
-
+					
 				$('#beneficios').css('display', 'none');
 			}
 

@@ -5,12 +5,18 @@ import lombok.Getter;
 @Getter
 public enum DepartamentoITSingular {
 	
+	COMERCIAL,
+	CONCILIACAO,
+	RH,
 	TI,
+	
+	//Novos enums atualizados
+	EMPLOYEE_EXPERIENCE,
 	FINANCES,
 	PRODUCT_SALES,
 	SERVICE_SALES,
 	TALENT_ACQUISITION,
-	EMPLOYEE_EXPERIENCE;
+	VAZIO;
 	
 
 	private String tipoDepartamento;

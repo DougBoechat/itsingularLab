@@ -5,9 +5,10 @@ import lombok.Getter;
 @Getter
 public enum ApontamentoHoras {
 	
-	IT,
+	AMBOS,
 	CLIENTE,
-	AMBOS;
+	IT;
+	
 	
 	private String apontamentoHoras;
 

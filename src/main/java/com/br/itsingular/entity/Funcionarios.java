@@ -2,6 +2,7 @@ package com.br.itsingular.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,6 +30,7 @@ import com.br.itsingular.enums.TipoConta;
 import com.br.itsingular.enums.TipoContratacao;
 import com.br.itsingular.enums.TipoGenero;
 import com.br.itsingular.enums.TipoNivel;
+import com.br.itsingular.model.Conta;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -170,15 +172,7 @@ public class Funcionarios implements Serializable{
 	
 	private String cepComercial;
 	
-	@Enumerated(EnumType.STRING)
-	private TipoBanco banco;
-	
-	@Enumerated(EnumType.STRING)
-	private TipoConta tipoConta;
-	
-	private String agencia;
-	
-	private String conta;
+	private List<Conta> contas;
 	
 	private String cnpj;
 	

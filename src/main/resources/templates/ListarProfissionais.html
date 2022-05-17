@@ -114,7 +114,7 @@
 										id="profissionais">
 										<thead>
 											<tr>
-												<th class="sticky-col first-col">Nome</th>
+												<th class="sticky-col first-col">Nome Completo</th>
 												<th>Gestor</th>
 												<th>DPTO</th>
 												<th>Cliente</th>
@@ -124,16 +124,13 @@
 												<th>Dt Contratação</th>
 												<th>Dt Fim Contratação</th>
 												<th>Remuneração CLT</th>
-												<th>VL transporte</th>
-												<th>VL VR/VA</th>
-												<th>VL PL Saúde</th>
-												<th>VL Aux Creche</th>
-												<th>Nº Celular</th>
-												<th>Nº Telefone</th>
-												<th>E-Mail</th>
+												<th>Remuneração PJ</th>
+												<th>Telefone Principal</th>
+												<th>Telefone Opcional</th>
+												<th>E-Mail Pessoal</th>
 												<th>Data Nascimento</th>
 												<th>Idade</th>
-												<th>Endereço</th>
+												<th>Logradouro</th>
 												<th>Nº</th>
 												<th>Complemento</th>
 												<th>Bairro</th>
@@ -141,7 +138,6 @@
 												<th>Estado</th>
 												<th>CEP</th>
 												<th>Notebook?</th>
-												<th>Dominio IT?</th>
 												<th>Ações</th>
 
 
@@ -167,13 +163,7 @@
 													style="white-space: nowrap"></td>
 												<td th:text="${funcionarios.remuneracaoCLT}"
 													style="white-space: nowrap"></td>
-												<td th:text="${funcionarios.valorTransporte}"
-													style="white-space: nowrap"></td>
-												<td th:text="${funcionarios.valorVrVA}"
-													style="white-space: nowrap"></td>
-												<td th:text="${funcionarios.valorPlanoSaude}"
-													style="white-space: nowrap"></td>
-												<td th:text="${funcionarios.valorAuxilioCreche}"
+												<td th:text="${funcionarios.remuneracaoPJ}"
 													style="white-space: nowrap"></td>
 												<td th:text="${funcionarios.numeroCelular}"
 													style="white-space: nowrap"></td>
@@ -181,8 +171,7 @@
 													style="white-space: nowrap"></td>
 												<td th:text="${funcionarios.email}"
 													style="white-space: nowrap"></td>
-												
-												
+																							
 												<td th:text="${funcionarios.dataNascimento}"
 													style="white-space: nowrap"></td>
 												
@@ -213,8 +202,6 @@
 												<td th:text="${funcionarios.necessarioNotebookITSingular}"
 													style="white-space: nowrap"></td>
 												
-												<td th:text="${funcionarios.necessarioDominioITSingular}"
-													style="white-space: nowrap"></td>
 												<td>
 													<div class="btn-group pull-right"
 														style="word-wrap: break-word">

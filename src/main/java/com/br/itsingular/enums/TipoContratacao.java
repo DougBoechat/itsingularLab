@@ -14,11 +14,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoContratacao {
 
-	CLT(1,"CLT"), 
-	PJ(2,"PJ"), 
-	FLEX(3,"FLEX"), 
-	COOPERATIVA(4,"COOPERATIVA"), 
-	ESTAGIO(5,"ESTÁGIO");
+	CLT(1,"CLT"),
+	COOPERATIVA(2,"COOPERATIVA"), 
+	ESTAGIO(3,"ESTÁGIO"),
+	FLEX_CLT(4,"FLEX CLT"),
+	FLEX_PJ(5, "FLEX PJ"),
+	PJ(6,"PJ");
+	
 	
 	private Integer tipoContratacao;
 	private String descricaoTipoContratacao;	

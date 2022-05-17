@@ -75,6 +75,7 @@ public enum TipoCargo {
 	
 	// Novos enums atualizados
 	ANALISTA_DADOS,
+	ANALISTA_DATAPOWER,
 	ARQUITETO_CLOUD,
 	CIENTISTA_DADOS,
 	COMERCIAL,
@@ -86,7 +87,6 @@ public enum TipoCargo {
 	SCRUM_MASTER,
 	TECH_LEAD,
 	UI,
-	
 	VAZIO;
 
 	private String tipoCargo;

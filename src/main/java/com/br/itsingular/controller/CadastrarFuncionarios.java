@@ -1,9 +1,12 @@
 package com.br.itsingular.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,9 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.br.itsingular.entity.Funcionarios;
+import com.br.itsingular.model.Conta;
 import com.br.itsingular.services.EmailServices;
 import com.br.itsingular.services.FuncionariosServices;
 import com.br.itsingular.utils.Utils;
@@ -49,17 +55,19 @@ public class CadastrarFuncionarios {
 	public ModelAndView cadastrarAtualizarFuncionario(@Valid Funcionarios funcionarios, BindingResult resul) {
 		ModelAndView model = new ModelAndView("CadastrarFuncionarios");
 		model.addObject("login", session.getAttribute("login"));
-		
+
 		LocalDate dataInicio = funcionarios.getDataContratacao();
 		LocalDate dataFim = funcionarios.getDataFimContratacao();
 		funcionarioServices.validaDataContratacao(dataInicio, dataFim);
-		
+
 		if (resul.hasErrors()) {
 			model.addObject("listarFuncionarios", funcionarioServices.findFuncionarios());
 			return model;
 		}
 		try {
 			if (!Utils.isEmptyOrNull(funcionarios.getId())) {
+				
+				
 				update(funcionarios);
 				model.addObject("message", "update");
 			} else {
@@ -68,7 +76,7 @@ public class CadastrarFuncionarios {
 				enviarEmails(funcionarios);
 				model.addObject("message", "insert");
 			}
-			
+
 			model.addObject("funcionarios", new Funcionarios());
 		} catch (Exception e) {
 			model.addObject("message", "error");
@@ -102,7 +110,14 @@ public class CadastrarFuncionarios {
 		ModelAndView model = new ModelAndView("CadastrarFuncionarios");
 		model.addObject("login", session.getAttribute("login"));
 		Optional<Funcionarios> funcionarios = funcionarioServices.findFuncionariosById(id);
-		//funcionarios.get().setDataNascimento(funcionarios.get().getDataNascimento().plusDays(1));//problema com a ISO (MongoDB)
+		if (funcionarios.get().getContas() == null || funcionarios.get().getContas().isEmpty()) {
+			List<Conta> contas = new ArrayList<>();
+			Conta conta = new Conta();
+			contas.add(conta);
+			funcionarios.get().setContas(contas);
+		}
+		// funcionarios.get().setDataNascimento(funcionarios.get().getDataNascimento().plusDays(1));//problema
+		// com a ISO (MongoDB)
 		model.addObject("funcionarios", funcionarios);
 		return model;
 	}
@@ -114,27 +129,45 @@ public class CadastrarFuncionarios {
 		model.addObject("funcionarios", new Funcionarios());
 		return model;
 	}
+
 	private void enviarEmails(Funcionarios funcionarios) {
 		try {
-			
-			enviarEmailCadastroFuncionario(funcionarios.getNome()
-					, funcionarios.getDepartamento().name()
-					, funcionarios.getGestores().name()
-					, funcionarios.getClienteParceiros().name()
-					, funcionarios.getDataContratacao());
-			
+
+			enviarEmailCadastroFuncionario(funcionarios.getNome(), funcionarios.getDepartamento().name(),
+					funcionarios.getGestores().name(), funcionarios.getClienteParceiros().name(),
+					funcionarios.getDataContratacao());
+
 			enviarEmailParaAreaTecnica(funcionarios);
 		} catch (Exception e) {
 			log.debug("Error -- " + e.getMessage());
 		}
-		
-	
+
 	}
+
 	private void enviarEmailCadastroFuncionario(String nome, String departamento, String gestor, String cliente,
 			LocalDate dataInicio) throws MessagingException {
 		emailServices.enviarEmailNovaContratacao(nome, departamento, gestor, cliente, dataInicio);
 	}
+
 	private void enviarEmailParaAreaTecnica(Funcionarios funcionarios) throws MessagingException {
 		emailServices.enviarEmailParaAreaTecnica(funcionarios);
 	}
+
+	
+	@RequestMapping(value = "/cadastrarConta", params = {"addRow"}, method = RequestMethod.POST)
+	public String addRow(List<Conta> contas, @RequestParam("addRow") String addRow, final BindingResult bindingResult) {
+		 Conta conta = new Conta(); 
+		 contas.add(conta); 
+		 return "/funcionarios/direcionarTelaCadastro";
+
+	}
+	
+	@RequestMapping(value = "/removerConta", params = {"removeRow"}, method = RequestMethod.POST)
+	public String removeRow(List<Conta> contas, final BindingResult bindingResult, final HttpServletRequest req) {
+		final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
+		contas.remove(rowId.intValue()); 
+		 return "/funcionarios/direcionarTelaCadastro";
+
+	}
+	
 }
