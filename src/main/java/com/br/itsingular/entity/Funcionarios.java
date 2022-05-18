@@ -2,18 +2,11 @@ package com.br.itsingular.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.br.itsingular.enums.ApontamentoHoras;
 import com.br.itsingular.enums.ClientesParceiros;
@@ -30,7 +23,12 @@ import com.br.itsingular.enums.TipoConta;
 import com.br.itsingular.enums.TipoContratacao;
 import com.br.itsingular.enums.TipoGenero;
 import com.br.itsingular.enums.TipoNivel;
-import com.br.itsingular.model.Conta;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -172,7 +170,25 @@ public class Funcionarios implements Serializable{
 	
 	private String cepComercial;
 	
-	private List<Conta> contas;
+	@Enumerated(EnumType.STRING)
+	private TipoBanco banco;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoConta tipoConta;
+	
+	private String agencia;
+	
+	private String conta;
+
+	@Enumerated(EnumType.STRING)
+	private TipoBanco banco2;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoConta tipoConta2;
+	
+	private String agencia2;
+	
+	private String conta2;
 	
 	private String cnpj;
 	
@@ -187,8 +203,6 @@ public class Funcionarios implements Serializable{
 	private String email;
 	
 	private String emailCorporativo;
-	
-	
 	
 	private String observacao;
 	

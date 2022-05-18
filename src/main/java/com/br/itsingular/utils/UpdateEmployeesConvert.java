@@ -58,7 +58,14 @@ public class UpdateEmployeesConvert {
 	
 		
 		//Dados bancários
-		update.set("contas", f.getContas());
+		update.set("tipoConta", f.getTipoConta());
+		update.set("banco", f.getBanco());
+		update.set("agencia", f.getAgencia());
+		update.set("conta", f.getConta());
+		update.set("tipoConta2", f.getTipoConta2());
+		update.set("banco2", f.getBanco2());
+		update.set("agencia2", f.getAgencia2());
+		update.set("conta2", f.getConta2());
 		
 		//Se PJ, Dados da Empresa
 		update.set("cnpj", f.getCnpj());

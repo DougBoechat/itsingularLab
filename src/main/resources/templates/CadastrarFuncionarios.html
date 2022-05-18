@@ -2,55 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
 <div th:insert="Header.html"></div>
 <script>
-	$(function () {
-		// Sidebar toggle behavior
-		$('#sidebarCollapse').on('click', function () {
-			$('#sidebar, #content').toggleClass('active');
-		});
-	});
-	$(document).on("keydown", "#observacao", function () {
-		var caracteresRestantes = 500;
-		var caracteresDigitados = parseInt($(this).val().length);
-		var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+    $(function() {
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    });
+    $(document).on("keydown", "#observacao", function() {
+        var caracteresRestantes = 500;
+        var caracteresDigitados = parseInt($(this).val().length);
+        var caracteresRestantes = caracteresRestantes - caracteresDigitados;
 
-		$(".caracteres").text(caracteresRestantes);
-	});
-	$(function () {
-		$('#dataNascimento').on('change', function () {
-			var tdate = new Date();
-			var concat = tdate.getFullYear();
-			var now = this.value.split('-')[0]
-			document.getElementById("idade").value = concat - now
-		})
-	});
-	function consultarCep(cep) {
-		$.ajax({
-			type: "GET",
-			async: false,
-			url: 'https://viacep.com.br/ws/' + cep.value + '/json/',
-			success: (data) => {
-				document.getElementById("logradouro").value = data.logradouro;
-				document.getElementById("bairro").value = data.bairro;
-				document.getElementById("estado").value = data.uf;
-				document.getElementById("localidade").value = data.localidade;
-			}
-		});
-	}
+        $(".caracteres").text(caracteresRestantes);
+    });
+    $(function() {
+        $('#dataNascimento').on('change', function() {
+            var tdate = new Date();
+            var concat = tdate.getFullYear();
+            var now = this.value.split('-')[0]
+            document.getElementById("idade").value = concat - now
+        })
+    });
 
+    function consultarCep(cep) {
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: 'https://viacep.com.br/ws/' + cep.value + '/json/',
+            success: (data) => {
+                document.getElementById("logradouro").value = data.logradouro;
+                document.getElementById("bairro").value = data.bairro;
+                document.getElementById("estado").value = data.uf;
+                document.getElementById("localidade").value = data.localidade;
+            }
+        });
+    }
 </script>
 
 <body>
-	<div class="d-flex">
-		<div th:replace="Menu :: menu">...</div>
-		<div id="content">
-			<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+    <div class="d-flex">
+        <div th:replace="Menu :: menu">...</div>
+        <div id="content">
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 				<i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small>
 			</button>
-			<!-- <div>
+            <!-- <div>
 				<a href="#"><img src="/img/itsingular.jpg"></a>
 				<div class="label-session-user">
 					<form th:action="@{/login/logout}" method="POST">
@@ -62,679 +62,580 @@
 				</div>
 			</div> -->
 
-			<div th:each="m : ${msg}">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<span th:text="${m}"></span>
-			</div>
+            <div th:each="m : ${msg}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <span th:text="${m}"></span>
+            </div>
 
-			<div th:switch="${message}" class="col-md-12" id="msg" role="alert">
-				<div th:case="'insert'" class="alert alert-success">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Sucesso!</strong> Cadastro executado com sucesso!
-				</div>
-				<div th:case="'error'" class="alert alert-danger">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Error!</strong> Houve um problema ao executar o
-					cadastro/atualização do profissional!
-				</div>
-				<div th:case="'update'" class="alert alert-success">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Sucesso!</strong> Atualização realizada com sucesso!
-				</div>
-			</div>
-			<div class="container my-5">
-				<div align="right" style="margin-top: -20px" class="form-group col-md-12">
-					<output th:text="Olá+': ' + ${login.name}"></output>
-					<span>Sair</span>&nbsp; <a href="#" th:href="@{/login/logout}">
-						<img src="/img/sair.png" style="width: 22px; height: 22px">
-					</a>
+            <div th:switch="${message}" class="col-md-12" id="msg" role="alert">
+                <div th:case="'insert'" class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Sucesso!</strong> Cadastro executado com sucesso!
+                </div>
+                <div th:case="'error'" class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> Houve um problema ao executar o cadastro/atualização do profissional!
+                </div>
+                <div th:case="'update'" class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Sucesso!</strong> Atualização realizada com sucesso!
+                </div>
+            </div>
+            <div class="container my-5">
+                <div align="right" style="margin-top: -20px" class="form-group col-md-12">
+                    <output th:text="Olá+': ' + ${login.name}"></output>
+                    <span>Sair</span>&nbsp;
+                    <a href="#" th:href="@{/login/logout}">
+                        <img src="/img/sair.png" style="width: 22px; height: 22px">
+                    </a>
 
-				</div>
-				<h3 align="center">Cadastrar Funcionário</h3>
-				<BR />
-				<div class="col-md-12">
-					<form th:action="@{/cadastrar-funcionarios/cadastrar-atualizar-Funcionario}"
-						th:object="${funcionarios}" method="post">
+                </div>
+                <h3 align="center">Cadastrar Funcionário</h3>
+                <BR />
+                <div class="col-md-12">
+                    <form th:action="@{/cadastrar-funcionarios/cadastrar-atualizar-Funcionario}" th:object="${funcionarios}" method="post">
 
-						<div style="display: none;" th:if="${session.containsKey('name')}" th:text="${session.name}">
-						</div>
+                        <div style="display: none;" th:if="${session.containsKey('name')}" th:text="${session.name}">
+                        </div>
 
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Dados
-											do Profissional</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-6">
-									<input type="hidden" th:field="*{id}" class="form-control" id="id_funcionario" />
-									<label for="nome" class="col-form-label labels">Nome Completo</label> <input
-										type="text" th:field="*{nome}" class="form-control" id="nome"
-										placeholder="Nome do Funcionário"> <span th:if="${#fields.hasErrors('nome')}"
-										th:errors="*{nome}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="dataNascimento" class="col-form-label" style="margin-left: 1px">Data de
-										Nascimento</label> <input type="date" th:field="*{dataNascimento}"
-										th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control"
-										id="dataNascimento" placeholder="Data Nascimento"><span
-										th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="idade" class="col-form-label">Idade</label> <input readonly="true"
-										type="text" th:field="*{idade}" class="form-control" id="idade">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Dados do Profissional</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-6">
+                                    <input type="hidden" th:field="*{id}" class="form-control" id="id_funcionario" />
+                                    <label for="nome" class="col-form-label labels">Nome Completo</label> <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome do Funcionário"> <span th:if="${#fields.hasErrors('nome')}"
+                                        th:errors="*{nome}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="dataNascimento" class="col-form-label" style="margin-left: 1px">Data de
+										Nascimento</label> <input type="date" th:field="*{dataNascimento}" th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control" id="dataNascimento" placeholder="Data Nascimento"><span th:if="${#fields.hasErrors('dataNascimento')}"
+                                        th:errors="*{dataNascimento}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="idade" class="col-form-label">Idade</label> <input readonly="true" type="text" th:field="*{idade}" class="form-control" id="idade">
 
-								</div>
-								<div class="form-group col-md-3">
-									<label for="cpf" class="col-form-label" style="margin-left: 1px">CPF</label> <input
-										type="text" th:field="*{cpf}" data-inputmask="'mask': '999.999.999-99'"
-										class="form-control" id="cpf" placeholder="Digite seu CPF">
-									<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="rg" class="col-form-label" style="margin-left: 1px">RG</label>
-									<input type="text" th:field="*{rg}"
-										data-inputmask="'mask': '9{1,2}.9{1,3}.9{1,3}-*'" class="form-control" id="rg"
-										placeholder="Digite seu RG">
-									<span th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}"
-										class="text-danger"></span>
-								</div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="cpf" class="col-form-label" style="margin-left: 1px">CPF</label> <input type="text" th:field="*{cpf}" data-inputmask="'mask': '999.999.999-99'" class="form-control" id="cpf" placeholder="Digite seu CPF">
+                                    <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="rg" class="col-form-label" style="margin-left: 1px">RG</label>
+                                    <input type="text" th:field="*{rg}" data-inputmask="'mask': '9{1,2}.9{1,3}.9{1,3}-*'" class="form-control" id="rg" placeholder="Digite seu RG">
+                                    <span th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="genero" class="col-form-label labels">Gênero</label>
-									<select class="form-control fields" th:field="*{genero}">
+                                <div class="form-group col-md-3">
+                                    <label for="genero" class="col-form-label labels">Gênero</label>
+                                    <select class="form-control fields" th:field="*{genero}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:each="tipoGenero : ${T(com.br.itsingular.enums.TipoGenero).values()}"
 											th:value="${tipoGenero}" th:text="${tipoGenero}"></option>
-									</select> <span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"
-										class="text-danger"></span>
-								</div>
+									</select> <span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}" class="text-danger"></span>
+                                </div>
 
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Dados
-											de Contato</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-4">
-									<label for="numeroCelular" class="col-form-label labels">Telefone
-										Principal</label> <input type="text" th:field="*{numeroCelular}"
-										class="form-control" id="numeroCelular" maxlength="14"
-										data-inputmask="'mask': '(99)99999-9999'" placeholder="Telefone Celular"> <span
-										th:if="${#fields.hasErrors('numeroCelular')}" th:errors="*{numeroCelular}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="numeroTelefone" class="col-form-label labels">Telefone
-										Opcional</label> <input type="text" th:field="*{numeroTelefone}"
-										class="form-control" id="numeroTelefone" maxlength="14"
-										data-inputmask="'mask': '(99)99999-9999'" placeholder="Telefone Opcional">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="email" class="col-form-label labels">E-mail Pessoal</label>
-									<input type="text" th:field="*{email}" class="form-control" id="email"
-										data-inputmask="'alias': 'email'"> <span th:if="${#fields.hasErrors('email')}"
-										th:errors="*{email}" class="text-danger"></span>
-								</div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Dados de Contato</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-4">
+                                    <label for="numeroCelular" class="col-form-label labels">Telefone
+										Principal</label> <input type="text" th:field="*{numeroCelular}" class="form-control" id="numeroCelular" maxlength="14" data-inputmask="'mask': '(99)99999-9999'" placeholder="Telefone Celular"> <span th:if="${#fields.hasErrors('numeroCelular')}"
+                                        th:errors="*{numeroCelular}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="numeroTelefone" class="col-form-label labels">Telefone
+										Opcional</label> <input type="text" th:field="*{numeroTelefone}" class="form-control" id="numeroTelefone" maxlength="14" data-inputmask="'mask': '(99)99999-9999'" placeholder="Telefone Opcional">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="email" class="col-form-label labels">E-mail Pessoal</label>
+                                    <input type="text" th:field="*{email}" class="form-control" id="email" data-inputmask="'alias': 'email'"> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-4">
-									<label for="emailCorporativo" class="col-form-label labels">E-mail
+                                <div class="form-group col-md-4">
+                                    <label for="emailCorporativo" class="col-form-label labels">E-mail
 										ITSingular</label>
-									<input value="emailCorporativo" type="text" th:field="*{emailCorporativo}"
-										class="form-control" id="emailCorporativo" data-inputmask="'alias': 'email'">
-										<span th:if="${#fields.hasErrors('emailCorporativo')}" th:errors="*{emailCorporativo}" class="text-danger"></span>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Responsáveis
-											e Dados da Contratação</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-3">
-									<label for="departamento" class="col-form-label labels">Departamento</label>
-									<select class="form-control" th:field="*{departamento}">
+                                    <input value="emailCorporativo" type="text" th:field="*{emailCorporativo}" class="form-control" id="emailCorporativo" data-inputmask="'alias': 'email'">
+                                    <span th:if="${#fields.hasErrors('emailCorporativo')}" th:errors="*{emailCorporativo}" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Responsáveis e Dados da Contratação</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-3">
+                                    <label for="departamento" class="col-form-label labels">Departamento</label>
+                                    <select class="form-control" th:field="*{departamento}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											th:each="tipoDepartamento : ${T(com.br.itsingular.enums.DepartamentoITSingular).values()}"
 											th:value="${tipoDepartamento}" th:text="${tipoDepartamento}"></option>
-									</select> <span th:if="${#fields.hasErrors('departamento')}"
-										th:errors="*{departamento}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="atuacao" class="col-form-label labels">Área
+									</select> <span th:if="${#fields.hasErrors('departamento')}" th:errors="*{departamento}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="atuacao" class="col-form-label labels">Área
 										de Atuação</label> <select class="form-control" th:field="*{atuacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											th:each="tipoAtuacao : ${T(com.br.itsingular.enums.TipoAtuacao).values()}"
 											th:value="${tipoAtuacao}" th:text="${tipoAtuacao}"></option>
-									</select> <span th:if="${#fields.hasErrors('atuacao')}" th:errors="*{atuacao}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="clienteParceiros" class="col-form-label labels">Clientes
+									</select> <span th:if="${#fields.hasErrors('atuacao')}" th:errors="*{atuacao}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="clienteParceiros" class="col-form-label labels">Clientes
 										e Parceiros</label> <select class="form-control" th:field="*{clienteParceiros}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											th:each="clientes : ${T(com.br.itsingular.enums.ClientesParceiros).values()}"
 											th:value="${clientes}" th:text="${clientes}"></option>
-									</select> <span th:if="${#fields.hasErrors('clienteParceiros')}"
-										th:errors="*{clienteParceiros}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="gestores" class="col-form-label labels">Gestor</label>
-									<select class="form-control" th:field="*{gestores}">
+									</select> <span th:if="${#fields.hasErrors('clienteParceiros')}" th:errors="*{clienteParceiros}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="gestores" class="col-form-label labels">Gestor</label>
+                                    <select class="form-control" th:field="*{gestores}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:each="gestor : ${T(com.br.itsingular.enums.Gestores).values()}"
 											th:value="${gestor}" th:text="${gestor}"></option>
-									</select> <span th:if="${#fields.hasErrors('gestores')}" th:errors="*{gestores}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="dataContratacao" class="col-form-label" style="margin-left: 1px">Data
-										Contratação</label> <input type="date" th:field="*{dataContratacao}"
-										th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control"
-										id="dataContratacao" placeholder="Data Contratação"><span
-										th:if="${#fields.hasErrors('dataContratacao')}" th:errors="*{dataContratacao}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="cargo" class="col-form-label labels">Cargo</label>
-									<select class="form-control" th:field="*{cargo}">
+									</select> <span th:if="${#fields.hasErrors('gestores')}" th:errors="*{gestores}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="dataContratacao" class="col-form-label" style="margin-left: 1px">Data
+										Contratação</label> <input type="date" th:field="*{dataContratacao}" th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control" id="dataContratacao" placeholder="Data Contratação"><span th:if="${#fields.hasErrors('dataContratacao')}"
+                                        th:errors="*{dataContratacao}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="cargo" class="col-form-label labels">Cargo</label>
+                                    <select class="form-control" th:field="*{cargo}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:each="tipoCargo : ${T(com.br.itsingular.enums.TipoCargo).values()}"
 											th:value="${tipoCargo}" th:text="${tipoCargo}"></option>
-									</select> <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}"
-										class="text-danger"></span>
-								</div>
+									</select> <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="tecnologiaPrincipal" class="col-form-label labels">Tecnologia
+                                <div class="form-group col-md-3">
+                                    <label for="tecnologiaPrincipal" class="col-form-label labels">Tecnologia
 										Principal</label>
-									<select class="form-control" th:field="*{tecnologiaPrincipal}">
+                                    <select class="form-control" th:field="*{tecnologiaPrincipal}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											th:each="tecnologiaPrincipal : ${T(com.br.itsingular.enums.TecnologiaPrincipal).values()}"
 											th:value="${tecnologiaPrincipal}" th:text="${tecnologiaPrincipal}"></option>
-									</select> <span th:if="${#fields.hasErrors('tecnologiaPrincipal')}"
-										th:errors="*{tecnologiaPrincipal}" class="text-danger"></span>
-								</div>
+									</select> <span th:if="${#fields.hasErrors('tecnologiaPrincipal')}" th:errors="*{tecnologiaPrincipal}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="remuneracaoCLT" class="col-form-label labels">Remuneração CLT</label>
-									<input type="text" th:field="*{remuneracaoCLT}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="remuneracaoCLT" placeholder="Remuneração CLT"><span
-										th:if="${#fields.hasErrors('remuneracaoCLT')}" th:errors="*{remuneracaoCLT}"
-										class="text-danger"></span>
-								</div>
+                                <div class="form-group col-md-3">
+                                    <label for="remuneracaoCLT" class="col-form-label labels">Remuneração CLT</label>
+                                    <input type="text" th:field="*{remuneracaoCLT}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="remuneracaoCLT" placeholder="Remuneração CLT"><span th:if="${#fields.hasErrors('remuneracaoCLT')}" th:errors="*{remuneracaoCLT}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="remuneracaoPJ" class="col-form-label labels">Remuneração PJ</label>
-									<input type="text" th:field="*{remuneracaoPJ}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="remuneracaoPJ" placeholder="Remuneração PJ"><span
-										th:if="${#fields.hasErrors('remuneracaoPJ')}" th:errors="*{remuneracaoPJ}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="dataFimContratacao" class="col-form-label" style="margin-left: 1px">Fim
-										Contratação</label> <input type="date" th:field="*{dataFimContratacao}"
-										th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control"
-										id="dataFimContratacao" placeholder="Data fim Contratação"> <span
-										th:if="${#fields.hasErrors('dataFimContratacao')}"
-										th:errors="*{dataFimContratacao}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="tipoContratacao" class="col-form-label labels">Tipo Contratação</label>
-									<select id="tipoContratacao" class="form-control" th:field="*{tipoContratacao}">
+                                <div class="form-group col-md-3">
+                                    <label for="remuneracaoPJ" class="col-form-label labels">Remuneração PJ</label>
+                                    <input type="text" th:field="*{remuneracaoPJ}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="remuneracaoPJ" placeholder="Remuneração PJ"><span th:if="${#fields.hasErrors('remuneracaoPJ')}" th:errors="*{remuneracaoPJ}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="dataFimContratacao" class="col-form-label" style="margin-left: 1px">Fim
+										Contratação</label> <input type="date" th:field="*{dataFimContratacao}" th:text="${#temporals.format(localDate, 'yyyy-MM-dd')}" class="form-control" id="dataFimContratacao" placeholder="Data fim Contratação">                                    <span th:if="${#fields.hasErrors('dataFimContratacao')}" th:errors="*{dataFimContratacao}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="tipoContratacao" class="col-form-label labels">Tipo Contratação</label>
+                                    <select id="tipoContratacao" class="form-control" th:field="*{tipoContratacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option id="contratacao"
 											th:each="tipoContratacao : ${T(com.br.itsingular.enums.TipoContratacao).values()}"
 											th:value="${tipoContratacao}" th:text="${tipoContratacao}"></option>
-									</select> <span th:if="${#fields.hasErrors('tipoContratacao')}"
-										th:errors="*{tipoContratacao}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="nivelContratacao" class="col-form-label labels">Nível
+									</select> <span th:if="${#fields.hasErrors('tipoContratacao')}" th:errors="*{tipoContratacao}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="nivelContratacao" class="col-form-label labels">Nível
 										Contratação</label> <select class="form-control" th:field="*{nivelContratacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:each="tipoNivel : ${T(com.br.itsingular.enums.TipoNivel).values()}"
 											th:value="${tipoNivel}" th:text="${tipoNivel}"></option>
-									</select> <span th:if="${#fields.hasErrors('nivelContratacao')}"
-										th:errors="*{nivelContratacao}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="statusFuncionario" class="col-form-label labels">Status
-										Contratação</label> <select class="form-control"
-										th:field="*{statusFuncionario}">
+									</select> <span th:if="${#fields.hasErrors('nivelContratacao')}" th:errors="*{nivelContratacao}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="statusFuncionario" class="col-form-label labels">Status
+										Contratação</label> <select class="form-control" th:field="*{statusFuncionario}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											th:each="statusFuncionario : ${T(com.br.itsingular.enums.StatusFuncionario).values()}"
 											th:value="${statusFuncionario}" th:text="${statusFuncionario}"></option>
-									</select> <span th:if="${#fields.hasErrors('statusFuncionario')}"
-										th:errors="*{statusFuncionario}" class="text-danger"></span>
-								</div>
+									</select> <span th:if="${#fields.hasErrors('statusFuncionario')}" th:errors="*{statusFuncionario}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="tempoContratacao" class="col-form-label labels">Tempo de Contratação</label>
-									<select id="tempoContratacao" class="form-control" th:field="*{tempoContratacao}">
+                                <div class="form-group col-md-3">
+                                    <label for="tempoContratacao" class="col-form-label labels">Tempo de Contratação</label>
+                                    <select id="tempoContratacao" class="form-control" th:field="*{tempoContratacao}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											id="tempoContratacao" th:each="tempoContratacao : ${T(com.br.itsingular.enums.TempoContratacao).values()}"
 											th:value="${tempoContratacao}" th:text="${tempoContratacao}"></option>
-									</select> <span th:if="${#fields.hasErrors('tempoContratacao')}"
-										th:errors="*{tempoContratacao}" class="text-danger"></span>
-								</div>
-								
-								<div class="form-group col-md-3">
-									<label for="modoHoras" class="col-form-label labels">Modo de Horas</label>
-									<select id="modoHoras" class="form-control" th:field="*{modoHoras}">
+									</select> <span th:if="${#fields.hasErrors('tempoContratacao')}" th:errors="*{tempoContratacao}" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="modoHoras" class="col-form-label labels">Modo de Horas</label>
+                                    <select id="modoHoras" class="form-control" th:field="*{modoHoras}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											id="modoHoras" th:each="modoHoras : ${T(com.br.itsingular.enums.ModoHoras).values()}"
 											th:value="${modoHoras}" th:text="${modoHoras}"></option>
-									</select> <span th:if="${#fields.hasErrors('modoHoras')}"
-										th:errors="*{modoHoras}" class="text-danger"></span>
-								</div>
-								
-								<div class="form-group col-md-3">
-									<label for="apontamentoHoras" class="col-form-label labels">Apontamento de Horas</label>
-									<select id="apontamentoHoras" class="form-control" th:field="*{apontamentoHoras}">
+									</select> <span th:if="${#fields.hasErrors('modoHoras')}" th:errors="*{modoHoras}" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="apontamentoHoras" class="col-form-label labels">Apontamento de Horas</label>
+                                    <select id="apontamentoHoras" class="form-control" th:field="*{apontamentoHoras}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option
 											id="apontamentoHoras" th:each="apontamentoHoras : ${T(com.br.itsingular.enums.ApontamentoHoras).values()}"
 											th:value="${apontamentoHoras}" th:text="${apontamentoHoras}"></option>
-									</select> <span th:if="${#fields.hasErrors('apontamentoHoras')}"
-										th:errors="*{apontamentoHoras}" class="text-danger"></span>
-								</div>
+									</select> <span th:if="${#fields.hasErrors('apontamentoHoras')}" th:errors="*{apontamentoHoras}" class="text-danger"></span>
+                                </div>
 
 
 
-							</div>
-						</div>
+                            </div>
+                        </div>
 
-						<div id="beneficios" class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Benefícios</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-3">
-									<label for="valorTransporte" class="col-form-label labels">Vlr
-										Transporte</label> <input type="text" th:field="*{valorTransporte}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="valorTransporte" placeholder="Vlr Transporte"><span
-										th:if="${#fields.hasErrors('valorTransporte')}" th:errors="*{valorTransporte}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="valorVrVA" class="col-form-label labels">Vlr
-										VR/VA</label> <input type="text" th:field="*{valorVrVA}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="valorVrVA" placeholder="Vlr VR/VA"><span
-										th:if="${#fields.hasErrors('valorVrVA')}" th:errors="*{valorVrVA}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="valorPlanoSaude" class="col-form-label labels">Vlr
-										Plano de Saúde</label> <input type="text" th:field="*{valorPlanoSaude}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="valorPlanoSaude" placeholder="Vlr Plano de Saúde"><span
-										th:if="${#fields.hasErrors('valorPlanoSaude')}" th:errors="*{valorPlanoSaude}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="valorAuxilioCreche" class="col-form-label labels">Vlr
-										Auxílio Creche</label> <input type="text" th:field="*{valorAuxilioCreche}"
-										data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
-										class="form-control" id="valorAuxilioCreche"
-										placeholder="Vlr Auxílio Creche"><span
-										th:if="${#fields.hasErrors('valorAuxilioCreche')}"
-										th:errors="*{valorAuxilioCreche}" class="text-danger"></span>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Endereço Residencial</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-3">
-									<label for="cepResidencial" class="col-form-label labels">CEP</label> <input
-										type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'"
-										th:field="*{cepResidencial}" class="form-control" id="cepResidencial"
-										placeholder="CEP" th:onchange="consultarCep(this);"> <span
-										th:if="${#fields.hasErrors('cepResidencial')}" th:errors="*{cepResidencial}"
-										class="text-danger"></span>
-								</div>
+                        <div id="beneficios" class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Benefícios</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-3">
+                                    <label for="valorTransporte" class="col-form-label labels">Vlr
+										Transporte</label> <input type="text" th:field="*{valorTransporte}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="valorTransporte" placeholder="Vlr Transporte"><span th:if="${#fields.hasErrors('valorTransporte')}" th:errors="*{valorTransporte}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="valorVrVA" class="col-form-label labels">Vlr
+										VR/VA</label> <input type="text" th:field="*{valorVrVA}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="valorVrVA" placeholder="Vlr VR/VA"><span th:if="${#fields.hasErrors('valorVrVA')}" th:errors="*{valorVrVA}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="valorPlanoSaude" class="col-form-label labels">Vlr
+										Plano de Saúde</label> <input type="text" th:field="*{valorPlanoSaude}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="valorPlanoSaude" placeholder="Vlr Plano de Saúde"><span th:if="${#fields.hasErrors('valorPlanoSaude')}" th:errors="*{valorPlanoSaude}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="valorAuxilioCreche" class="col-form-label labels">Vlr
+										Auxílio Creche</label> <input type="text" th:field="*{valorAuxilioCreche}" data-inputmask="'autoUnmask': true, 'alias': 'numeric', 'groupSeparator': '.', 'digitsOptional': false,  'radixPoint': ',', 'autoGroup': true,'placeholder': '0', 'prefix': 'R$ ','digits': 2, 'unmaskAsNumber': true"
+                                        class="form-control" id="valorAuxilioCreche" placeholder="Vlr Auxílio Creche"><span th:if="${#fields.hasErrors('valorAuxilioCreche')}" th:errors="*{valorAuxilioCreche}" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Endereço Residencial</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-3">
+                                    <label for="cepResidencial" class="col-form-label labels">CEP</label> <input type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'" th:field="*{cepResidencial}" class="form-control" id="cepResidencial" placeholder="CEP"
+                                        th:onchange="consultarCep(this);"> <span th:if="${#fields.hasErrors('cepResidencial')}" th:errors="*{cepResidencial}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-6">
-									<label for="logradouroResidencial" class="col-form-label labels">Logradouro</label>
-									<input type="text" th:field="*{logradouroResidencial}" class="form-control"
-										id="logradouroResidencial" placeholder="Logradouro">
-									<span th:if="${#fields.hasErrors('logradouroResidencial')}"
-										th:errors="*{logradouroResidencial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="numeroResidencial" class="col-form-label labels">Número</label>
-									<input type="number" th:field="*{numeroResidencial}" class="form-control"
-										id="numeroResidencial" placeholder="Número"> <span
-										th:if="${#fields.hasErrors('numeroResidencial')}"
-										th:errors="*{numeroResidencial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="complementoResidencial"
-										class="col-form-label labels">Complemento</label>
-									<input type="text" th:field="*{complementoResidencial}" class="form-control"
-										id="complementoResidencial" placeholder="Complemento"> <span
-										th:if="${#fields.hasErrors('complementoResidencial')}"
-										th:errors="*{complementoResidencial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="bairroResidencial" class="col-form-label labels">Bairro</label>
-									<input type="text" th:field="*{bairroResidencial}" class="form-control"
-										id="bairroResidencial" placeholder="Bairro"> <span
-										th:if="${#fields.hasErrors('bairroResidencial')}"
-										th:errors="*{bairroResidencial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="localidadeResidencial" class="col-form-label labels">Cidade</label>
-									<input type="text" th:field="*{localidadeResidencial}" class="form-control"
-										id="localidadeResidencial" placeholder="Cidade">
-									<span th:if="${#fields.hasErrors('localidadeResidencial')}"
-										th:errors="*{localidadeResidencial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-2">
-									<label for="estadoResidencial" class="col-form-label labels">Estado</label>
-									<input type="text" th:field="*{estadoResidencial}" class="form-control"
-										id="estadoResidencial" placeholder="Estado"> <span
-										th:if="${#fields.hasErrors('estadoResidencial')}"
-										th:errors="*{estadoResidencial}" class="text-danger"></span>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Dados
-											Bancários</h1>
-									</div>
-								</div>
-							</div>
+                                <div class="form-group col-md-6">
+                                    <label for="logradouroResidencial" class="col-form-label labels">Logradouro</label>
+                                    <input type="text" th:field="*{logradouroResidencial}" class="form-control" id="logradouroResidencial" placeholder="Logradouro">
+                                    <span th:if="${#fields.hasErrors('logradouroResidencial')}" th:errors="*{logradouroResidencial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="numeroResidencial" class="col-form-label labels">Número</label>
+                                    <input type="number" th:field="*{numeroResidencial}" class="form-control" id="numeroResidencial" placeholder="Número"> <span th:if="${#fields.hasErrors('numeroResidencial')}" th:errors="*{numeroResidencial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="complementoResidencial" class="col-form-label labels">Complemento</label>
+                                    <input type="text" th:field="*{complementoResidencial}" class="form-control" id="complementoResidencial" placeholder="Complemento"> <span th:if="${#fields.hasErrors('complementoResidencial')}" th:errors="*{complementoResidencial}"
+                                        class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="bairroResidencial" class="col-form-label labels">Bairro</label>
+                                    <input type="text" th:field="*{bairroResidencial}" class="form-control" id="bairroResidencial" placeholder="Bairro"> <span th:if="${#fields.hasErrors('bairroResidencial')}" th:errors="*{bairroResidencial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="localidadeResidencial" class="col-form-label labels">Cidade</label>
+                                    <input type="text" th:field="*{localidadeResidencial}" class="form-control" id="localidadeResidencial" placeholder="Cidade">
+                                    <span th:if="${#fields.hasErrors('localidadeResidencial')}" th:errors="*{localidadeResidencial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="estadoResidencial" class="col-form-label labels">Estado</label>
+                                    <input type="text" th:field="*{estadoResidencial}" class="form-control" id="estadoResidencial" placeholder="Estado"> <span th:if="${#fields.hasErrors('estadoResidencial')}" th:errors="*{estadoResidencial}" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Dados Bancários
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
 
-							<div id="dadosBancarios">
+                            <div id="dadosBancarios">
 
-								<div id="rowDadosBancarios" class="row" th:each="conta, rowStat : ${contas}">
-									<BR />
-									<div class="form-group col-md-3">
-										<label for="tipoConta" class="col-form-label labels">Tipo
-											da Conta</label> <select class="form-control" th:field="${conta.tipoConta}">
+                                <div id="rowDadosBancarios" class="row">
+                                    <BR />
+                                    <div class="form-group col-md-3">
+                                        <label for="tipoConta" class="col-form-label labels">Tipo
+											da Conta</label> <select class="form-control" th:field="*{tipoConta}">
 											<option th:value="''" th:text="SELECIONE"></option>
 											<option
 												th:each="tipoConta : ${T(com.br.itsingular.enums.TipoConta).values()}"
-												th:value="${conta.tipoConta}" th:text="${conta.tipoConta}"></option>
+												th:value="${tipoConta}" th:text="${tipoConta}"></option>
 										</select>
-									</div>
+                                    </div>
 
-									<div class="form-group col-md-3">
-										<label for="banco" class="col-form-label labels">Banco</label>
-										<select class="form-control" th:field="${conta.banco}">
+                                    <div class="form-group col-md-3">
+                                        <label for="banco" class="col-form-label labels">Banco</label>
+                                        <select class="form-control" th:field="*{banco}">
 											<option th:value="''" th:text="SELECIONE"></option>
 											<option th:each="banco : ${T(com.br.itsingular.enums.TipoBanco).values()}"
-												th:value="${conta.banco}" th:text="${conta.banco}"></option>
+												th:value="${banco}" th:text="${banco}"></option>
 										</select>
-									</div> 
-									<div class="form-group col-md-2">
-										<label for="agencia" class="col-form-label labels">Agência</label>
-										<input type="text" th:field="${conta.agencia}" data-inputmask="'mask': '9{1,4}-9{1}'"
-											class="form-control" placeholder="Agência Bancária">
-									</div>
-									<div class="form-group col-md-3">
-										<label for="conta" class="col-form-label" style="margin-left: 1px">Nº
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="agencia" class="col-form-label labels">Agência</label>
+                                        <input type="text" th:field="*{agencia}" data-inputmask="'mask': '9{1,4}-9{1}'" class="form-control" id="agencia" placeholder="Agência Bancária">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="conta" class="col-form-label" style="margin-left: 1px">Nº
 											Conta</label>
-										<input type="text" th:field="${conta.conta}" data-inputmask="'mask': '9{1,8}-9{1}'"
-											class="form-control" placeholder="Nº Conta">
-									</div>
+                                        <input type="text" th:field="*{conta}" data-inputmask="'mask': '9{1,8}-9{1}'" class="form-control" id="conta" placeholder="Nº Conta">
+                                    </div>
+                                    <BR />
+                                    <div class="form-group col-md-3">
+                                        <label for="tipoConta2" class="col-form-label labels">Tipo
+											da Conta</label> <select class="form-control" th:field="*{tipoConta2}">
+											<option th:value="''" th:text="SELECIONE"></option>
+											<option
+												th:each="tipoConta : ${T(com.br.itsingular.enums.TipoConta).values()}"
+												th:value="${tipoConta}" th:text="${tipoConta}"></option>
+										</select>
+                                    </div>
 
-								</div>
+                                    <div class="form-group col-md-3">
+                                        <label for="banco2" class="col-form-label labels">Banco</label>
+                                        <select class="form-control" th:field="*{banco2}">
+											<option th:value="''" th:text="SELECIONE"></option>
+											<option th:each="banco : ${T(com.br.itsingular.enums.TipoBanco).values()}"
+												th:value="${banco}" th:text="${banco}"></option>
+										</select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="agencia2" class="col-form-label labels">Agência</label>
+                                        <input type="text" th:field="*{agencia2}" data-inputmask="'mask': '9{1,4}-9{1}'" class="form-control" id="agencia" placeholder="Agência Bancária">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="conta2" class="col-form-label" style="margin-left: 1px">Nº
+											Conta</label>
+                                        <input type="text" th:field="*{conta2}" data-inputmask="'mask': '9{1,8}-9{1}'" class="form-control" id="conta" placeholder="Nº Conta">
+                                    </div>
 
-								<div id="box" style="margin-top: 15px;"> </div>
+                                </div>
 
-								<div style="margin-top: 15px;">
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Dados da Empresa</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-5">
+                                    <label for="cnpj" class="col-form-label" style="margin-left: 1px">CNPJ</label>
+                                    <input type="text" th:field="*{cnpj}" data-inputmask="'mask': '99.999.999/9999-99'" class="form-control" id="cnpj" placeholder="Digite seu CNPJ">
 
-									<button class="btn btn-success" name="addRow" type="button" 
-										style="margin-top: 15px">Novos Dados Bancários</button>
-								</div>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label for="nomeEmpresa" class="col-form-label labels">Nome
+										da Empresa</label> <input type="text" th:field="*{nomeEmpresa}" class="form-control" id="nomeEmpresa" placeholder="Nome da Empresa">
+                                </div>
 
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Dados
-											da Empresa</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-5">
-									<label for="cnpj" class="col-form-label" style="margin-left: 1px">CNPJ</label>
-									<input type="text" th:field="*{cnpj}" data-inputmask="'mask': '99.999.999/9999-99'"
-										class="form-control" id="cnpj" placeholder="Digite seu CNPJ">
+                                <div class="form-group col-md-3">
+                                    <label for="cepComercial" class="col-form-label labels">CEP</label> <input type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'" th:field="*{cepComercial}" class="form-control" id="cepComercial" placeholder="CEP" th:onchange="consultarCep(this);">                                    <span th:if="${#fields.hasErrors('cepComercial')}" th:errors="*{cepComercial}" class="text-danger"></span>
+                                </div>
 
-								</div>
-								<div class="form-group col-md-7">
-									<label for="nomeEmpresa" class="col-form-label labels">Nome
-										da Empresa</label> <input type="text" th:field="*{nomeEmpresa}"
-										class="form-control" id="nomeEmpresa" placeholder="Nome da Empresa">
-								</div>
+                                <div class="form-group col-md-6">
+                                    <label for="logradouroComercial" class="col-form-label labels">Logradouro</label>
+                                    <input type="text" th:field="*{logradouroComercial}" class="form-control" id="logradouroComercial" placeholder="Logradouro">
+                                    <span th:if="${#fields.hasErrors('logradouroComercial')}" th:errors="*{logradouroComercial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="numeroComercial" class="col-form-label labels">Número</label>
+                                    <input type="number" th:field="*{numeroComercial}" class="form-control" id="numeroComercial" placeholder="Número"> <span th:if="${#fields.hasErrors('numeroComercial')}" th:errors="*{numeroComercial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="complementoComercial" class="col-form-label labels">Complemento</label>
+                                    <input type="text" th:field="*{complementoComercial}" class="form-control" id="complementoComercial" placeholder="Complemento"> <span th:if="${#fields.hasErrors('complementoComercial')}" th:errors="*{complementoComercial}"
+                                        class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="bairroComercial" class="col-form-label labels">Bairro</label>
+                                    <input type="text" th:field="*{bairroComercial}" class="form-control" id="bairroComercial" placeholder="Bairro"> <span th:if="${#fields.hasErrors('bairroComercial')}" th:errors="*{bairroComercial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="localidadeComercial" class="col-form-label labels">Cidade</label>
+                                    <input type="text" th:field="*{localidadeComercial}" class="form-control" id="localidadeComercial" placeholder="Cidade">
+                                    <span th:if="${#fields.hasErrors('localidadeComercial')}" th:errors="*{localidadeComercial}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="estadoComercial" class="col-form-label labels">Estado</label>
+                                    <input type="text" th:field="*{estadoComercial}" class="form-control" id="estadoComercial" placeholder="Estado"> <span th:if="${#fields.hasErrors('estadoComercial')}" th:errors="*{estadoComercial}" class="text-danger"></span>
+                                </div>
 
-								<div class="form-group col-md-3">
-									<label for="cepComercial" class="col-form-label labels">CEP</label> <input
-										type="text" data-inputmask="'mask': '9{1,5}-9{1,3}'" th:field="*{cepComercial}"
-										class="form-control" id="cepComercial" placeholder="CEP"
-										th:onchange="consultarCep(this);"> <span
-										th:if="${#fields.hasErrors('cepComercial')}" th:errors="*{cepComercial}"
-										class="text-danger"></span>
-								</div>
-
-								<div class="form-group col-md-6">
-									<label for="logradouroComercial" class="col-form-label labels">Logradouro</label>
-									<input type="text" th:field="*{logradouroComercial}" class="form-control"
-										id="logradouroComercial" placeholder="Logradouro">
-									<span th:if="${#fields.hasErrors('logradouroComercial')}"
-										th:errors="*{logradouroComercial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="numeroComercial" class="col-form-label labels">Número</label>
-									<input type="number" th:field="*{numeroComercial}" class="form-control"
-										id="numeroComercial" placeholder="Número"> <span
-										th:if="${#fields.hasErrors('numeroComercial')}" th:errors="*{numeroComercial}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="complementoComercial" class="col-form-label labels">Complemento</label>
-									<input type="text" th:field="*{complementoComercial}" class="form-control"
-										id="complementoComercial" placeholder="Complemento"> <span
-										th:if="${#fields.hasErrors('complementoComercial')}"
-										th:errors="*{complementoComercial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="bairroComercial" class="col-form-label labels">Bairro</label>
-									<input type="text" th:field="*{bairroComercial}" class="form-control"
-										id="bairroComercial" placeholder="Bairro"> <span
-										th:if="${#fields.hasErrors('bairroComercial')}" th:errors="*{bairroComercial}"
-										class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="localidadeComercial" class="col-form-label labels">Cidade</label>
-									<input type="text" th:field="*{localidadeComercial}" class="form-control"
-										id="localidadeComercial" placeholder="Cidade">
-									<span th:if="${#fields.hasErrors('localidadeComercial')}"
-										th:errors="*{localidadeComercial}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-2">
-									<label for="estadoComercial" class="col-form-label labels">Estado</label>
-									<input type="text" th:field="*{estadoComercial}" class="form-control"
-										id="estadoComercial" placeholder="Estado"> <span
-										th:if="${#fields.hasErrors('estadoComercial')}" th:errors="*{estadoComercial}"
-										class="text-danger"></span>
-								</div>
-
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-heading">
-									<div class="clearfix">
-										<h1 class="panel-title" style="margin-left: -27px">Observações</h1>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<BR />
-								<div class="form-group col-md-3">
-									<label for="necessarioDominioITSingular" class="col-form-label labels">E-mail
-										ITSingular? </label> <select class="form-control"
-										th:field="*{necessarioDominioITSingular}">
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-heading">
+                                    <div class="clearfix">
+                                        <h1 class="panel-title" style="margin-left: -27px">Observações</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <BR />
+                                <div class="form-group col-md-3">
+                                    <label for="necessarioDominioITSingular" class="col-form-label labels">E-mail
+										ITSingular? </label> <select class="form-control" th:field="*{necessarioDominioITSingular}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:value="SIM" th:text="SIM"></option>
 										<option th:value="'NAO'" th:text="NÃO"></option>
-									</select> <span th:if="${#fields.hasErrors('necessarioDominioITSingular')}"
-										th:errors="*{necessarioDominioITSingular}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-3">
-									<label for="necessarioNotebookITSingular" class="col-form-label labels">Notebook?
+									</select> <span th:if="${#fields.hasErrors('necessarioDominioITSingular')}" th:errors="*{necessarioDominioITSingular}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="necessarioNotebookITSingular" class="col-form-label labels">Notebook?
 									</label> <select class="form-control" th:field="*{necessarioNotebookITSingular}">
 										<option th:value="''" th:text="SELECIONE"></option>
 										<option th:value="SIM" th:text="SIM"></option>
 										<option th:value="'NAO'" th:text="NÃO"></option>
-									</select> <span th:if="${#fields.hasErrors('necessarioNotebookITSingular')}"
-										th:errors="*{necessarioNotebookITSingular}" class="text-danger"></span>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="observacao" class="col-form-label" style="margin-left: 1px">Observações</label>
-									<span class="caracteres">500</span> Restantes <br>
-									<textarea maxlength="1000" cols="10" rows="5" th:field="*{observacao}"
-										class="form-control" id="observacao"></textarea>
-									<span th:if="${#fields.hasErrors('observacao')}" th:errors="*{observacao}"
-										class="text-danger"></span>
-								</div>
-							</div>
-						</div>
+									</select> <span th:if="${#fields.hasErrors('necessarioNotebookITSingular')}" th:errors="*{necessarioNotebookITSingular}" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="observacao" class="col-form-label" style="margin-left: 1px">Observações</label>
+                                    <span class="caracteres">500</span> Restantes <br>
+                                    <textarea maxlength="1000" cols="10" rows="5" th:field="*{observacao}" class="form-control" id="observacao"></textarea>
+                                    <span th:if="${#fields.hasErrors('observacao')}" th:errors="*{observacao}" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
 
-						<HR style="color: black" />
-						<div class="row">
-							<div class="form-group col-md-12" style="text-align: right">
-								<input type="submit" class="btn btn-primary" value="Confirmar Cadastro"> <a
-									class="btn bdelete btn btn-sm btn-danger"
-									th:href="@{/cadastrar-funcionarios/init}">Voltar</a>
-							</div>
+                        <HR style="color: black" />
+                        <div class="row">
+                            <div class="form-group col-md-12" style="text-align: right">
+                                <input type="submit" class="btn btn-primary" value="Confirmar Cadastro"> <a class="btn bdelete btn btn-sm btn-danger" th:href="@{/cadastrar-funcionarios/init}">Voltar</a>
+                            </div>
 
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<script>
+    <script>
+        /*	contador = 1;
+                                		
+                                		var btn_add = document.getElementById('add');
+                                		btn_add.addEventListener('click', function () {
 
-	/*	contador = 1;
-		
-		var btn_add = document.getElementById('add');
-		btn_add.addEventListener('click', function () {
+                                			duplicateDiv();
+                                			contador++
 
-			duplicateDiv();
-			contador++
-
-		});
-		
-		
-		function removerCampos() {	
-      
-      		var posicao = event.target.getAttribute('id');
-			
-			var div = document.getElementById("rowDadosBancarios" + posicao);
-			div.remove();
-		
-		}
+                                		});
+                                		
+                                		
+                                		function removerCampos() {	
+                                      
+                                      		var posicao = event.target.getAttribute('id');
+                                			
+                                			var div = document.getElementById("rowDadosBancarios" + posicao);
+                                			div.remove();
+                                		
+                                		}
 
 
-		function duplicateDiv() {
+                                		function duplicateDiv() {
 
-			var box = document.getElementById('box');
-			var node = document.getElementById('rowDadosBancarios');
+                                			var box = document.getElementById('box');
+                                			var node = document.getElementById('rowDadosBancarios');
 
-			var clone = node.cloneNode(true);
-			clone.setAttribute('id', "rowDadosBancarios" + contador);
-			
-			box.appendChild(clone);
-	
-			var btn = document.createElement('button');
-			btn.setAttribute('id', contador);
-			btn.setAttribute('type', 'button');
-			btn.setAttribute('class', 'btn btn-outline-danger');
-			btn.setAttribute('style', 'height: 40px; margin-top: 28px; margin-right: 10px');
-			btn.textContent = 'Excluir';			
-						
-			clone.appendChild(btn);		
-			
-			btn.addEventListener('click', removerCampos);
+                                			var clone = node.cloneNode(true);
+                                			clone.setAttribute('id', "rowDadosBancarios" + contador);
+                                			
+                                			box.appendChild(clone);
+                                	
+                                			var btn = document.createElement('button');
+                                			btn.setAttribute('id', contador);
+                                			btn.setAttribute('type', 'button');
+                                			btn.setAttribute('class', 'btn btn-outline-danger');
+                                			btn.setAttribute('style', 'height: 40px; margin-top: 28px; margin-right: 10px');
+                                			btn.textContent = 'Excluir';			
+                                						
+                                			clone.appendChild(btn);		
+                                			
+                                			btn.addEventListener('click', removerCampos);
 
-		}; */
-		
-
-		$('#tipoContratacao').change(function () {
-
-			var valor = $('#tipoContratacao').val();
-			var vlrTransporte = $('#valorTransporte').val();
-			
-			if(valor == 'CLT' || valor == 'FLEX_CLT' || valor == 'FLEX_PJ') {
-
-				$('#beneficios').css('display', 'block');
-
-			} else {
-					
-				$('#beneficios').css('display', 'none');
-			}
-
-		});
+                                		}; */
 
 
-	</script>
+        $('#tipoContratacao').change(function() {
+
+            var valor = $('#tipoContratacao').val();
+            var vlrTransporte = $('#valorTransporte').val();
+
+            if (valor == 'CLT' || valor == 'FLEX_CLT' || valor == 'FLEX_PJ') {
+
+                $('#beneficios').css('display', 'block');
+
+            } else {
+
+                $('#beneficios').css('display', 'none');
+            }
+
+        });
+    </script>
 
 </body>
 

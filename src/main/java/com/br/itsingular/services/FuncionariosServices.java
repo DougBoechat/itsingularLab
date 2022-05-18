@@ -1,12 +1,12 @@
 package com.br.itsingular.services;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
+import com.br.itsingular.entity.Funcionarios;
+import com.br.itsingular.repository.FuncionariosRepository;
+import com.br.itsingular.utils.UpdateEmployeesConvert;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -14,14 +14,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.br.itsingular.controller.CadastrarFuncionarios;
-import com.br.itsingular.entity.Funcionarios;
-import com.br.itsingular.repository.FuncionariosRepository;
-import com.br.itsingular.utils.UpdateEmployeesConvert;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class FuncionariosServices {
 
