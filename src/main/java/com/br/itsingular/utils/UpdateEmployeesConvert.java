@@ -56,7 +56,6 @@ public class UpdateEmployeesConvert {
 		update.set("localidadeResidencial", f.getLocalidadeResidencial());
 		update.set("cepResidencial", f.getCepResidencial());
 	
-		
 		//Dados bancários
 		update.set("tipoConta", f.getTipoConta());
 		update.set("banco", f.getBanco());
